@@ -1,0 +1,32 @@
+{
+  "name": "xinan-cloud-survey",
+  "private": true,
+  "version": "0.0.0",
+  "scripts": {
+    "dev": "vite",
+    "build": "vite build",
+    "preview": "vite preview"
+  },
+  "dependencies": {
+    "@types/node": "^18.0.0",
+    "@vueuse/integrations": "^8.6.0",
+    "axios": "^0.27.2",
+    "element-plus": "^2.2.5",
+    "node-sass": "^7.0.1",
+    "pinia": "^2.0.14",
+    "sass": "^1.52.3",
+    "sass-loader": "^13.0.0",
+    "universal-cookie": "^4.0.4",
+    "vue": "^3.2.25",
+    "vue-router": "4"
+  },
+  "devDependencies": {
+    "@vitejs/plugin-vue": "^2.3.3",
+    "unplugin-auto-import": "^0.8.8",
+    "unplugin-vue-components": "^0.19.6",
+    "vite": "^2.9.9"
+  },
+  "engines": {
+    "node": "14.x || 16.x"
+  }
+}
