@@ -1,14 +1,8 @@
 <template>
-  <el-radio-group v-model="isCollapse" style="margin-bottom: 20px">
-    <el-radio-button :label="false">expand</el-radio-button>
-    <el-radio-button :label="true">collapse</el-radio-button>
-  </el-radio-group>
   <el-menu
     default-active="2"
     class="el-menu-vertical-demo"
-    :collapse="isCollapse"
-    @open="handleOpen"
-    @close="handleClose"
+    :collapse="store.isCollapse"
   >
     <el-menu-item index="1">
       <el-icon><icon-menu /></el-icon>
@@ -39,28 +33,33 @@
   </el-menu>
 </template>
 
-<script lang="ts" setup>
-import { ref } from "vue";
+<script lang="ts">
 import {
   Document,
   Menu as IconMenu,
   Location,
   Setting,
 } from "@element-plus/icons-vue";
+import { defineComponent } from "vue";
+import { mainStore } from "@/store/index.js";
+export default defineComponent({
+  components: { Document, IconMenu, Location, Setting },
+  setup() {
+    const store = mainStore();
 
-const isCollapse = ref(false);
-const handleOpen = (key: string, keyPath: string[]) => {
-  console.log(key, keyPath);
-};
-const handleClose = (key: string, keyPath: string[]) => {
-  console.log(key, keyPath);
-};
+    return {
+      store,
+    };
+  },
+});
 </script>
 
 <style lang="scss" scoped>
+.el-menu{
+    height: 100%;
+}
 .el-menu-vertical-demo:not(.el-menu--collapse) {
   width: 200px;
-  min-height: 400px;
-  border-right: 0px;
+  height: 100%;
 }
 </style>

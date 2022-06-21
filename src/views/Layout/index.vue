@@ -15,13 +15,21 @@
   </div>
 </template>
 
-<script lang="ts" setup>
-import { mainStore } from "@/store/index.js";
+<script lang="ts">
+import { defineComponent } from "vue";
 import TopMenu from "./componemnts/TopMenu.vue";
 import Collapse from "./componemnts/Collapse.vue";
 import Breadcrumb from "./componemnts/Breadcrumb.vue";
-
-const store = mainStore();
+export default defineComponent({
+  components: {
+    TopMenu,
+    Collapse,
+    Breadcrumb,
+  },
+  setup() {
+    return {};
+  },
+});
 </script>
 
 <style lang="scss" scoped>
@@ -30,13 +38,11 @@ const store = mainStore();
   overflow: hidden;
   .header {
     width: 100%;
-    height: 55px;
   }
   .body {
     height: 100%;
     display: flex;
     .left {
-      width: 200px;
       height: 100%;
     }
     .right {

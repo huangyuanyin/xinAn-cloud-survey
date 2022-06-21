@@ -1,7 +1,9 @@
 <template>
   <div class="breadcrumb">
-    <el-icon v-if="isCollapse" @click="handleOpen"><Expand /></el-icon>
-    <el-icon v-else @click="handleClose"><Fold /></el-icon>
+    <el-icon v-if="isCollapse" @click="handleClick(false)">
+      <Expand />
+    </el-icon>
+    <el-icon v-else @click="handleClick(true)"><Fold /></el-icon>
   </div>
 </template>
 
@@ -9,6 +11,7 @@
 import { defineComponent } from "vue";
 import { Expand, Fold } from "@element-plus/icons-vue";
 import { ref } from "vue";
+import { mainStore } from "@/store/index.js";
 export default defineComponent({
   components: {
     Expand,
@@ -16,21 +19,19 @@ export default defineComponent({
   },
   setup() {
     const isCollapse = ref<Boolean>(false);
-    const handleOpen = () => {
-      isCollapse.value = false;
-      console.log("打开", isCollapse.value);
-    };
-    const handleClose = () => {
-      isCollapse.value = true;
-      console.log("关闭", isCollapse.value);
+    const store = mainStore();
+
+    const handleClick = (val) => {
+      isCollapse.value = val;
+      store.changeCollapse(isCollapse.value);
     };
 
     return {
       isCollapse,
-      handleOpen,
-      handleClose,
+      handleClick,
       Expand,
       Fold,
+      store,
     };
   },
 });
