@@ -5,8 +5,8 @@ import { getToken } from "./auth";
 
 const service = axios.create({
     // baseURL:"http://ceshi13.dishait.cn/"
-    baseURL:"http://10.20.84.55:8000/",
-    // baseURL:'/api',
+    // baseURL:"http://10.20.84.55:8000/",
+    baseURL:'/api',
     // baseURL:process.env.VUE_API_BASE_URL,
     timeout: 12000, // 请求超时时间
 })
