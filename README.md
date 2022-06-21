@@ -1,4 +1,4 @@
-#### Vue3 + Typescript + Vite
+#### 基于Vue3 + Typescript + Vite + pinia + elementPlus 搭建测试平台
 
 ### 自动引入elementPlus
 
