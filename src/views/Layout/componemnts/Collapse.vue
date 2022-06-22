@@ -3,6 +3,9 @@
     default-active="2"
     class="el-menu-vertical-demo"
     :collapse="store.isCollapse"
+    active-text-color="#409eff"
+    background-color="#00142a"
+    text-color="#fff"
   >
     <el-menu-item index="1">
       <el-icon><icon-menu /></el-icon>
@@ -55,8 +58,8 @@ export default defineComponent({
 </script>
 
 <style lang="scss" scoped>
-.el-menu{
-    height: 100%;
+.el-menu {
+  height: 100%;
 }
 .el-menu-vertical-demo:not(.el-menu--collapse) {
   width: 200px;

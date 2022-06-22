@@ -1,6 +1,5 @@
 <template>
   <div class="Layout">
-    <!-- {{store.userInfo}} -->
     <div class="header">
       <TopMenu />
     </div>
