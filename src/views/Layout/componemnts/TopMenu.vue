@@ -56,15 +56,20 @@
         <img :src="user" />
         <el-dropdown>
           <span class="el-dropdown-link">
-            马晓飞
+            {{ data.username }}
             <el-icon class="el-icon--right">
               <ArrowDown />
             </el-icon>
           </span>
           <template #dropdown>
             <el-dropdown-menu>
-              <el-dropdown-item>个人中心</el-dropdown-item>
-              <el-dropdown-item>退出登录</el-dropdown-item>
+              <el-dropdown-item
+                v-for="(item, index) in data.button"
+                :key="'button' + index"
+                @click="toLink(index)"
+              >
+                {{ item.name }}
+              </el-dropdown-item>
             </el-dropdown-menu>
           </template>
         </el-dropdown>
@@ -73,8 +78,7 @@
   </div>
 </template>
 <script lang="ts">
-import { defineComponent } from "vue";
-import { ref } from "vue";
+import { defineComponent, reactive, ref } from "vue";
 import logo from "@/assets/logo.png";
 import user from "@/assets/user.png";
 import {
@@ -87,7 +91,6 @@ import {
   CloseBold,
 } from "@element-plus/icons-vue";
 import Drawer from "@/components/Drawer.vue";
-import { drawerEmits } from "element-plus";
 export default defineComponent({
   components: {
     ArrowDown,
@@ -96,6 +99,10 @@ export default defineComponent({
     Drawer,
   },
   setup() {
+    const data = reactive({
+      username: JSON.parse(localStorage.getItem("userInfo")).nickname,
+      button: [{ name: "个人中心" }, { name: "退出登录" }],
+    });
     const input = ref("");
     const activeIndex = ref("1");
     const drawer = ref(false);
@@ -105,7 +112,18 @@ export default defineComponent({
     const openDrawer = (val) => {
       val === "open" ? (drawer.value = true) : (drawer.value = false);
     };
+    const toLink = (index) => {
+      switch (index) {
+        case 0:
+          console.log("index", index);
+          break;
+        case 1:
+          console.log("退出登录", index);
+          break;
+      }
+    };
     return {
+      data,
       logo,
       user,
       Search,
@@ -117,6 +135,7 @@ export default defineComponent({
       handleSelect,
       HomeFilled,
       openDrawer,
+      toLink,
     };
   },
 });
