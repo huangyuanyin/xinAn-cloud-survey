@@ -35,7 +35,8 @@
   </div>
 </template>
 
-<script lang="ts" setup>
+<script lang="ts">
+import { defineComponent, toRef, toRefs } from "vue";
 import { login } from "@/api/user.js";
 import { getInfo } from "@/api/manger/index.js";
 import { ref, reactive, onMounted, onBeforeUnmount } from "vue";
@@ -43,53 +44,63 @@ import { useRouter } from "vue-router";
 import { Lock, Avatar } from "@element-plus/icons-vue";
 import type { FormInstance, FormRules } from "element-plus";
 import { ElNotification } from "element-plus";
-
 // import { useCookies } from '@vueuse/integrations/useCookies'
 import { setToken } from "@/utils/auth.js";
 import { mainStore } from "@/store/index.js";
 
-const router = useRouter();
-const loading = ref(false);
-const store = mainStore();
-const ruleFormRef = ref<FormInstance>();
-const rules = reactive<FormRules>({
-  username: [
-    { required: true, message: "请输入用户名", trigger: "blur" },
-    // { min: 3, max: 5, message: '用户名长度必须是3-5个字符', trigger: 'blur' },
-  ],
-  password: [{ required: true, message: "请输入密码", trigger: "blur" }],
+export default defineComponent({
+  setup() {
+    const router = useRouter();
+    const loading = ref(false);
+    const store = mainStore();
+    const ruleFormRef = ref<FormInstance>();
+    const rules = reactive<FormRules>({
+      username: [
+        { required: true, message: "请输入用户名", trigger: "blur" },
+        // { min: 3, max: 5, message: '用户名长度必须是3-5个字符', trigger: 'blur' },
+      ],
+      password: [{ required: true, message: "请输入密码", trigger: "blur" }],
+    });
+    const formData = reactive({
+      username: "",
+      password: "",
+    });
+    const onSubmit = async (formEl: FormInstance | undefined) => {
+      if (!formEl) return;
+      await formEl.validate((valid, fields) => {
+        if (valid) {
+          loading.value = true;
+          login(formData.username, formData.password)
+            .then((res) => {
+              router.push("/center/mine");
+              // 存储 token
+              setToken(res.token);
+              // 获取用户相关信息
+              getInfo().then((res2) => {
+                store.getUserInfo(res2);
+                localStorage.setItem("userInfo", JSON.stringify(res2));
+                console.log("用户信息...", res2);
+              });
+            })
+            .finally(() => {
+              loading.value = false;
+            });
+        } else {
+          console.log("error submit!", fields);
+        }
+      });
+    };
+    return {
+      Lock,
+      Avatar,
+      formData,
+      rules,
+      loading,
+      ruleFormRef,
+      onSubmit,
+    };
+  },
 });
-const formData = reactive({
-  username: "",
-  password: "",
-});
-const onSubmit = async (formEl: FormInstance | undefined) => {
-  if (!formEl) return;
-  await formEl.validate((valid, fields) => {
-    console.log("aaa", valid);
-
-    if (valid) {
-      loading.value = true;
-      login(formData.username, formData.password)
-        .then((res) => {
-          router.push("/center/mine");
-          // 存储 token
-          setToken(res.token);
-          // 获取用户相关信息
-          getInfo().then((res2) => {
-            store.getUserInfo(res2);
-            localStorage.setItem("userInfo", JSON.stringify(res2));
-            console.log("用户信息...", res2);
-          });
-        })
-        .finally(() => {
-          loading.value = false;
-        });
-    } else {
-      console.log("error submit!", fields);
-    }
-  });
-};
 </script>
 
 <style lang="scss" scoped>
