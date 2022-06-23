@@ -47,13 +47,14 @@ import { ElNotification } from "element-plus";
 // import { useCookies } from '@vueuse/integrations/useCookies'
 import { setToken } from "@/utils/auth.js";
 import { mainStore } from "@/store/index.js";
-
+import jwt_decode from "jwt-decode";
 export default defineComponent({
   setup() {
     const router = useRouter();
     const loading = ref(false);
     const store = mainStore();
     const ruleFormRef = ref<FormInstance>();
+    const userInfo = ref({});
     const rules = reactive<FormRules>({
       username: [
         { required: true, message: "请输入用户名", trigger: "blur" },
@@ -73,14 +74,17 @@ export default defineComponent({
           login(formData.username, formData.password)
             .then((res) => {
               router.push("/center/mine");
+              // 解析token
+              userInfo.value = jwt_decode(res.token);
+              localStorage.setItem("userInfo", JSON.stringify(userInfo.value));
               // 存储 token
               setToken(res.token);
               // 获取用户相关信息
-              getInfo().then((res2) => {
-                store.getUserInfo(res2);
-                localStorage.setItem("userInfo", JSON.stringify(res2));
-                console.log("用户信息...", res2);
-              });
+              // getInfo().then((res2) => {
+              //   store.getUserInfo(res2);
+              //   localStorage.setItem("userInfo", JSON.stringify(res2));
+              //   console.log("用户信息...", res2);
+              // });
             })
             .finally(() => {
               loading.value = false;
@@ -98,6 +102,7 @@ export default defineComponent({
       loading,
       ruleFormRef,
       onSubmit,
+      userInfo,
     };
   },
 });
