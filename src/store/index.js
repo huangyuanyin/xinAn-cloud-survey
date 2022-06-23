@@ -13,7 +13,7 @@ export const mainStore = defineStore('main', {
     getters: {
     },
     actions: {
-        // 记录用户信息
+        // 存储用户信息
         getUserInfo(userInfo) {
             this.userInfo = userInfo
             localStorage.setItem("userInfo", this.userInfo)

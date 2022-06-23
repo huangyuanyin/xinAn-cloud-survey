@@ -1,16 +1,14 @@
 <template>
   <div class="Layout">
-    <div class="header">
-      <TopMenu />
-    </div>
-    <div class="body">
-      <div class="left">
-        <Collapse />
-      </div>
-      <div class="right">
-        <Breadcrumb />
-      </div>
-    </div>
+    <el-container>
+      <el-header>
+        <TopMenu />
+      </el-header>
+      <el-container>
+        <el-aside width="200px">Aside</el-aside>
+        <el-main>Main</el-main>
+      </el-container>
+    </el-container>
   </div>
 </template>
 
@@ -33,21 +31,15 @@ export default defineComponent({
 
 <style lang="scss" scoped>
 .Layout {
-  height: 100vh;
-  overflow: hidden;
-  .header {
+  .el-header {
     width: 100%;
+    height: 50px;
+    background-color: #242f42;
+    padding-left: 0px;
   }
-  .body {
-    height: 100%;
-    display: flex;
-    .left {
-      height: 100%;
-    }
-    .right {
-      flex: 1;
-      height: 100%;
-    }
+  .el-aside {
+    height: calc(100vh - 50px);
+    background-color: #fff;
   }
 }
 </style>
