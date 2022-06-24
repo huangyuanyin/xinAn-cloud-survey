@@ -19,7 +19,7 @@
     </div>
     <span class="line"> | </span>
     <div class="work">
-      <el-button text :icon="HomeFilled">工作台</el-button>
+      <el-button text :icon="HomeFilled" @click="toWork">工作台</el-button>
     </div>
     <div class="right-menu">
       <div class="search">
@@ -122,6 +122,8 @@ export default defineComponent({
           break;
       }
     };
+    const toWork = () => {
+    };
     return {
       data,
       logo,
@@ -136,6 +138,7 @@ export default defineComponent({
       HomeFilled,
       openDrawer,
       toLink,
+      toWork,
     };
   },
 });
