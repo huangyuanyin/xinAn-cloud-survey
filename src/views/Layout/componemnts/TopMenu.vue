@@ -81,6 +81,8 @@
 import { defineComponent, reactive, ref } from "vue";
 import logo from "@/assets/logo.png";
 import user from "@/assets/user.png";
+import { mainStore } from "@/store/index.js";
+import { removeToken } from "@/utils/auth.js";
 import {
   HomeFilled,
   ArrowDown,
@@ -91,6 +93,7 @@ import {
   CloseBold,
 } from "@element-plus/icons-vue";
 import Drawer from "@/components/Drawer.vue";
+import { useRouter } from "vue-router";
 export default defineComponent({
   components: {
     ArrowDown,
@@ -100,9 +103,11 @@ export default defineComponent({
   },
   setup() {
     const data = reactive({
-      username: JSON.parse(localStorage.getItem("userInfo")).nickname,
+      username: JSON.parse(localStorage.getItem("userInfo"))?.nickname,
       button: [{ name: "个人中心" }, { name: "退出登录" }],
     });
+    const router = useRouter();
+    const store = mainStore();
     const input = ref("");
     const activeIndex = ref("1");
     const drawer = ref(false);
@@ -118,13 +123,16 @@ export default defineComponent({
           console.log("index", index);
           break;
         case 1:
-          console.log("退出登录", index);
+          store.clearInfo();
+          removeToken();
+          router.push("/login");
           break;
       }
     };
-    const toWork = () => {
-    };
+    const toWork = () => {};
     return {
+      store,
+      router,
       data,
       logo,
       user,

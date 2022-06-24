@@ -73,12 +73,12 @@ export default defineComponent({
           loading.value = true;
           login(formData.username, formData.password)
             .then((res) => {
-              router.push("/center/mine");
               // 解析token
               userInfo.value = jwt_decode(res.token);
-              localStorage.setItem("userInfo", JSON.stringify(userInfo.value));
               // 存储 token
               setToken(res.token);
+              store.getUserInfo(JSON.stringify(userInfo.value));
+              router.push("/center/mine");
               // 获取用户相关信息
               // getInfo().then((res2) => {
               //   store.getUserInfo(res2);

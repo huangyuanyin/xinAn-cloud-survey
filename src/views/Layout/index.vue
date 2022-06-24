@@ -5,8 +5,8 @@
         <TopMenu />
       </el-header>
       <el-container>
-        <el-aside width="200px">Aside</el-aside>
-        <el-main>Main</el-main>
+        <el-aside width="200px">菜单</el-aside>
+        <el-main>内容</el-main>
       </el-container>
     </el-container>
   </div>

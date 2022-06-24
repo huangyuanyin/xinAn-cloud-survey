@@ -8,7 +8,7 @@ const service = axios.create({
     // baseURL:"http://10.20.84.55:8000/",
     baseURL: "http://10.20.86.27:8000",
     // baseURL: '/api',
-    timeout: 12000, // 请求超时时间
+    timeout: 12000,
 })
 
 // 添加请求拦截器
