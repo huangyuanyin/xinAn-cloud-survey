@@ -11,7 +11,6 @@
 import { defineComponent } from "vue";
 import { Expand, Fold } from "@element-plus/icons-vue";
 import { ref } from "vue";
-import { mainStore } from "@/store/index.js";
 export default defineComponent({
   components: {
     Expand,
@@ -19,11 +18,9 @@ export default defineComponent({
   },
   setup() {
     const isCollapse = ref<Boolean>(false);
-    const store = mainStore();
 
     const handleClick = (val) => {
       isCollapse.value = val;
-      store.changeCollapse(isCollapse.value);
     };
 
     return {
@@ -31,7 +28,6 @@ export default defineComponent({
       handleClick,
       Expand,
       Fold,
-      store,
     };
   },
 });

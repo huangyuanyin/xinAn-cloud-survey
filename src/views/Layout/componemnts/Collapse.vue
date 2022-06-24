@@ -44,15 +44,10 @@ import {
   Setting,
 } from "@element-plus/icons-vue";
 import { defineComponent } from "vue";
-import { mainStore } from "@/store/index.js";
 export default defineComponent({
   components: { Document, IconMenu, Location, Setting },
   setup() {
-    const store = mainStore();
-
-    return {
-      store,
-    };
+    return {};
   },
 });
 </script>

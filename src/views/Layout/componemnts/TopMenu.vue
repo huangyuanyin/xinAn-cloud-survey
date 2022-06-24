@@ -81,7 +81,7 @@
 import { defineComponent, reactive, ref } from "vue";
 import logo from "@/assets/logo.png";
 import user from "@/assets/user.png";
-import { mainStore } from "@/store/index.js";
+import { useUserStore } from "@/store/modules/user";
 import { removeToken } from "@/utils/auth.js";
 import {
   HomeFilled,
@@ -107,7 +107,7 @@ export default defineComponent({
       button: [{ name: "个人中心" }, { name: "退出登录" }],
     });
     const router = useRouter();
-    const store = mainStore();
+    const store = useUserStore();
     const input = ref("");
     const activeIndex = ref("1");
     const drawer = ref(false);
@@ -123,8 +123,7 @@ export default defineComponent({
           console.log("index", index);
           break;
         case 1:
-          store.clearInfo();
-          removeToken();
+          store.LoginOut();
           router.push("/login");
           break;
       }
