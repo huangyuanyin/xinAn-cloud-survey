@@ -13,7 +13,7 @@
         </el-menu-item>
         <el-sub-menu index="1">
           <template #title>
-            <el-icon> 
+            <el-icon>
               <Location />
             </el-icon>
             <span>文件管理</span>
@@ -72,13 +72,14 @@ export default defineComponent({
       default: false,
     },
   },
-  setup(props) {
+  setup(props, { emit }) {
     const direction = ref("ltr");
     const isDrawer = computed({
       get() {
         return props.drawer;
       },
       set(value) {
+        emit("changeDrawer", value)
         return value;
       },
     });

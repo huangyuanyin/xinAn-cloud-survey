@@ -3,7 +3,7 @@
     <div class="logo">
       <el-button v-if="!drawer" :icon="Operation" class="open" @click="openDrawer('open')" />
       <el-button v-else :icon="CloseBold" class="open" @click="openDrawer('close')" />
-      <Drawer :drawer="drawer" />
+      <Drawer :drawer="drawer" @changeDrawer="changeDrawer" />
       <img :src="logo" />
       <span>信安云测平台</span>
     </div>
@@ -54,7 +54,7 @@
   </div>
 </template>
 <script lang="ts">
-import { defineComponent, reactive, ref } from "vue";
+import { defineComponent, reactive, ref, onMounted } from "vue";
 import logo from "@/assets/logo.png";
 import user from "@/assets/user.png";
 import { useUserStore } from "@/store/modules/user";
@@ -104,6 +104,11 @@ export default defineComponent({
       }
     };
     const toWork = () => { };
+    const changeDrawer = (drawer) => {
+      openDrawer(drawer)
+    }
+    onMounted(() => {
+    });
     return {
       store,
       router,
@@ -121,6 +126,7 @@ export default defineComponent({
       openDrawer,
       toLink,
       toWork,
+      changeDrawer
     };
   },
 });
