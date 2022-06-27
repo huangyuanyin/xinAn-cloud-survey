@@ -1,18 +1,8 @@
 <template>
   <div class="Header-wrapper">
     <div class="logo">
-      <el-button
-        v-if="!drawer"
-        :icon="Operation"
-        class="open"
-        @click="openDrawer('open')"
-      />
-      <el-button
-        v-else
-        :icon="CloseBold"
-        class="open"
-        @click="openDrawer('close')"
-      />
+      <el-button v-if="!drawer" :icon="Operation" class="open" @click="openDrawer('open')" />
+      <el-button v-else :icon="CloseBold" class="open" @click="openDrawer('close')" />
       <Drawer :drawer="drawer" />
       <img :src="logo" />
       <span>信安云测平台</span>
@@ -23,33 +13,23 @@
     </div>
     <div class="right-menu">
       <div class="search">
-        <el-input
-          v-model="input"
-          placeholder="请输入要搜索的内容"
-          :prefix-icon="Search"
-        />
+        <el-input v-model="input" placeholder="请输入要搜索的内容" :prefix-icon="Search" />
       </div>
       <div class="support">
         <el-button text bg>支持</el-button>
       </div>
       <div class="help">
-        <el-tooltip
-          class="box-item"
-          effect="dark"
-          content="有两条未读消息"
-          placement="bottom"
-        >
-          <el-icon><BellFilled /></el-icon>
+        <el-tooltip class="box-item" effect="dark" content="有两条未读消息" placement="bottom">
+          <el-icon>
+            <BellFilled />
+          </el-icon>
         </el-tooltip>
       </div>
       <div class="tip">
-        <el-tooltip
-          class="box-item"
-          effect="dark"
-          content="帮助文档"
-          placement="bottom"
-        >
-          <el-icon><QuestionFilled /></el-icon>
+        <el-tooltip class="box-item" effect="dark" content="帮助文档" placement="bottom">
+          <el-icon>
+            <QuestionFilled />
+          </el-icon>
         </el-tooltip>
       </div>
       <div class="userInfo">
@@ -63,11 +43,7 @@
           </span>
           <template #dropdown>
             <el-dropdown-menu>
-              <el-dropdown-item
-                v-for="(item, index) in data.button"
-                :key="'button' + index"
-                @click="toLink(index)"
-              >
+              <el-dropdown-item v-for="(item, index) in data.button" :key="'button' + index" @click="toLink(index)">
                 {{ item.name }}
               </el-dropdown-item>
             </el-dropdown-menu>
@@ -79,10 +55,9 @@
 </template>
 <script lang="ts">
 import { defineComponent, reactive, ref } from "vue";
-import logo from "@/assets/logo.png";
+import logo from "../../../assets/logo.png";
 import user from "@/assets/user.png";
 import { useUserStore } from "@/store/modules/user";
-import { removeToken } from "@/utils/auth.js";
 import {
   HomeFilled,
   ArrowDown,
@@ -128,7 +103,7 @@ export default defineComponent({
           break;
       }
     };
-    const toWork = () => {};
+    const toWork = () => { };
     return {
       store,
       router,
@@ -156,21 +131,25 @@ export default defineComponent({
   display: flex;
   align-items: center;
   height: 100%;
+  box-shadow: -1px 2px 14px 0px;
+
   .logo {
     display: flex;
     align-items: center;
     height: 100%;
+
     .open {
       height: 100%;
       border: none;
       border-radius: 0px;
-      margin-right: 10px;
       background-color: #242f42;
       color: #fff;
     }
+
     img {
-      height: 40px;
+      width: 40px;
     }
+
     span {
       line-height: 50px;
       color: #fff;
@@ -182,38 +161,49 @@ export default defineComponent({
       margin-left: 5px;
     }
   }
+
   .line {
     color: #fff;
     margin: 0 5px 0 10px;
   }
+
   .work {
     flex: 1;
     height: 100%;
     line-height: 50px;
   }
+
   .right-menu {
     display: flex;
     align-items: center;
+    padding-right: 20px;
+
     .support {
       margin: 0 4px;
+
       .el-button.is-text:not(.is-disabled).is-has-bg.el-button.is-text:not(.is-disabled).is-has-bg {
         background-color: #242f42;
       }
     }
+
     .help {
       .el-icon svg {
         color: #fff;
       }
     }
+
     .tip {
       margin: 0 20px;
+
       .el-icon svg {
         color: #fff;
       }
     }
+
     .userInfo {
       display: flex;
       align-items: center;
+
       img {
         margin: 0 5px 0 10px;
         display: block;
@@ -221,6 +211,7 @@ export default defineComponent({
         height: 30px;
         border-radius: 50%;
       }
+
       .el-dropdown {
         color: #fff;
       }

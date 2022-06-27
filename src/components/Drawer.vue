@@ -1,11 +1,6 @@
 <template>
   <div class="">
-    <el-drawer
-      v-model="isDrawer"
-      :direction="direction"
-      :append-to-body="false"
-      :z-index="10"
-    >
+    <el-drawer v-model="isDrawer" :direction="direction" :append-to-body="false" :z-index="-1">
     </el-drawer>
   </div>
 </template>

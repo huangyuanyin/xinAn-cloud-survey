@@ -5,7 +5,6 @@
         <TopMenu />
       </el-header>
       <el-container>
-        <el-aside width="200px">菜单</el-aside>
         <el-main>内容</el-main>
       </el-container>
     </el-container>
@@ -35,11 +34,16 @@ export default defineComponent({
     width: 100%;
     height: 50px;
     background-color: #242f42;
-    padding-left: 0px;
+    padding: 0px;
   }
+
   .el-aside {
     height: calc(100vh - 50px);
     background-color: #fff;
+  }
+
+  .el-container {
+    z-index: -999;
   }
 }
 </style>

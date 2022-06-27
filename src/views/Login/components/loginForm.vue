@@ -1,35 +1,15 @@
 <template>
   <div>
-    <el-form
-      ref="ruleFormRef"
-      :rules="rules"
-      :model="formData"
-      class="form-style"
-    >
+    <el-form ref="ruleFormRef" :rules="rules" :model="formData" class="form-style">
       <el-form-item label="" prop="username">
-        <el-input
-          v-model="formData.username"
-          placeholder="请输入用户名"
-          :prefix-icon="Avatar"
-        />
+        <el-input v-model="formData.username" placeholder="请输入用户名" :prefix-icon="Avatar" />
       </el-form-item>
       <el-form-item label="" prop="password">
-        <el-input
-          v-model="formData.password"
-          type="password"
-          placeholder="请输入密码"
-          show-password
-          :prefix-icon="Lock"
-        />
+        <el-input v-model="formData.password" type="password" placeholder="请输入密码" show-password :prefix-icon="Lock" />
       </el-form-item>
       <el-form-item>
-        <el-button
-          class="submit-style"
-          type="primary"
-          @click="onSubmit(ruleFormRef)"
-          :loading="loading"
-          >Login</el-button
-        >
+        <el-button class="submit-style" type="primary" @click="onSubmit(ruleFormRef)" :loading="loading">Login
+        </el-button>
       </el-form-item>
     </el-form>
   </div>
@@ -91,6 +71,7 @@ export default defineComponent({
 <style lang="scss" scoped>
 .form-style {
   width: 250px;
+
   .submit-style {
     width: 100%;
   }
