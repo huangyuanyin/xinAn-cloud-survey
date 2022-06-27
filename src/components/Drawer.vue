@@ -1,14 +1,71 @@
 <template>
-  <div class="">
-    <el-drawer v-model="isDrawer" :direction="direction" :append-to-body="false" :z-index="-1">
+  <div class="drawer-wrapper">
+    <el-drawer v-model="isDrawer" :direction="direction" :append-to-body="false" :z-index="-1" :with-header="false">
+      <el-menu default-active="2" class="el-menu-vertical-demo">
+        <el-menu-item index="5" class="elMenu">
+          <el-icon>
+            <Setting />
+          </el-icon>
+          <span>产品与服务</span>
+          <el-icon class="arrow">
+            <ArrowRight />
+          </el-icon>
+        </el-menu-item>
+        <el-sub-menu index="1">
+          <template #title>
+            <el-icon> 
+              <Location />
+            </el-icon>
+            <span>文件管理</span>
+          </template>
+          <el-menu-item-group title="Group One">
+            <el-menu-item index="1-1">item one</el-menu-item>
+            <el-menu-item index="1-2">item one</el-menu-item>
+          </el-menu-item-group>
+          <el-menu-item-group title="Group Two">
+            <el-menu-item index="1-3">item three</el-menu-item>
+          </el-menu-item-group>
+          <el-sub-menu index="1-4">
+            <template #title>item four</template>
+            <el-menu-item index="1-4-1">item one</el-menu-item>
+          </el-sub-menu>
+        </el-sub-menu>
+        <el-menu-item index="2">
+          <el-icon>
+            <IconMenu />
+          </el-icon>
+          <span>项目管理</span>
+        </el-menu-item>
+        <el-menu-item index="3">
+          <el-icon>
+            <document />
+          </el-icon>
+          <span>日志管理</span>
+        </el-menu-item>
+        <el-menu-item index="4">
+          <el-icon>
+            <Setting />
+          </el-icon>
+          <span>资产管理</span>
+        </el-menu-item>
+      </el-menu>
     </el-drawer>
   </div>
 </template>
 
 <script lang="ts">
 import { defineComponent, ref, computed } from "vue";
-
+import {
+  Document,
+  Menu as IconMenu,
+  Location,
+  Setting,
+  ArrowRight
+} from '@element-plus/icons-vue';
 export default defineComponent({
+  components: {
+    IconMenu, Document, Location, Setting, ArrowRight
+  },
   props: {
     drawer: {
       type: Boolean,
@@ -25,13 +82,45 @@ export default defineComponent({
         return value;
       },
     });
-    return { direction, isDrawer };
+    return {
+      direction, isDrawer
+    };
   },
 });
 </script>
 
 <style lang="scss" scoped>
-::v-deep .el-overlay {
-  top: 50px;
+.drawer-wrapper {
+  ::v-deep .el-drawer__header {
+    margin-bottom: 0px;
+    padding: 0px;
+  }
+
+  ::v-deep .el-drawer__body {
+    padding: 0px;
+  }
+
+  ::v-deep .el-overlay {
+    top: 50px;
+  }
+
+  .el-menu-vertical-demo {
+    height: 100vh;
+    width: 240px;
+
+    .elMenu {
+      background-color: #ebebeb;
+    }
+
+    .arrow {
+      position: absolute;
+      top: 50%;
+      right: var(--el-menu-base-level-padding);
+      margin-top: -7px;
+      font-size: 12px;
+      margin-right: 0;
+      width: inherit;
+    }
+  }
 }
 </style>

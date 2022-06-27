@@ -55,7 +55,7 @@
 </template>
 <script lang="ts">
 import { defineComponent, reactive, ref } from "vue";
-import logo from "../../../assets/logo.png";
+import logo from "@/assets/logo.png";
 import user from "@/assets/user.png";
 import { useUserStore } from "@/store/modules/user";
 import {
