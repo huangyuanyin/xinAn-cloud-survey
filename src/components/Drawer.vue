@@ -49,6 +49,11 @@
           <span>资产管理</span>
         </el-menu-item>
       </el-menu>
+      <span class="close" @click="handleClose">
+        <el-icon>
+          <Close />
+        </el-icon>
+      </span>
     </el-drawer>
   </div>
 </template>
@@ -60,11 +65,12 @@ import {
   Menu as IconMenu,
   Location,
   Setting,
-  ArrowRight
+  ArrowRight,
+  Close
 } from '@element-plus/icons-vue';
 export default defineComponent({
   components: {
-    IconMenu, Document, Location, Setting, ArrowRight
+    IconMenu, Document, Location, Setting, ArrowRight, Close
   },
   props: {
     drawer: {
@@ -83,8 +89,11 @@ export default defineComponent({
         return value;
       },
     });
+    const handleClose = () => {
+      isDrawer.value = false
+    }
     return {
-      direction, isDrawer
+      direction, isDrawer, handleClose
     };
   },
 });
@@ -122,6 +131,16 @@ export default defineComponent({
       margin-right: 0;
       width: inherit;
     }
+  }
+
+  .close {
+    display: inline-block;
+    position: absolute;
+    top: 20px;
+    right: 20px;
+    line-height: 20px;
+    font-size: 16px;
+    cursor: pointer;
   }
 }
 </style>

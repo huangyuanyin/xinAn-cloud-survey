@@ -44,6 +44,7 @@ export default defineComponent({
 
   .el-container {
     z-index: -999;
+    height: 50px;
   }
 }
 </style>
