@@ -16,7 +16,7 @@ service.interceptors.request.use(function (config) {
   // 在发送请求之前做些什么
   // 往header头中自动添加token
   const token = getToken()
-  if (token) {
+  if (token && (config.url !== '/forum/login/')) {
     config.headers["token"] = token
   }
   return config;
