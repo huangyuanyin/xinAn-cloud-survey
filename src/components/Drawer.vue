@@ -1,7 +1,7 @@
 <template>
   <div class="drawer-wrapper">
     <el-drawer v-model="isDrawer" :direction="direction" :append-to-body="false" :z-index="-1" :with-header="false">
-      <el-menu default-active="2" class="el-menu-vertical-demo" @select="handleClose" router>
+      <el-menu default-active="POCTest" class="el-menu-vertical-demo" @select="handleClose" router>
         <el-menu-item index="5" class="elMenu">
           <el-icon>
             <Setting />

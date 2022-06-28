@@ -21,7 +21,7 @@ import { defineComponent } from "vue";
 import TopMenu from "./components/TopMenu.vue";
 import Collapse from "@/components/CollapseMenu.vue";
 import Breadcrumb from "./components/Breadcrumb.vue";
-import AppMain from './components/AppMain.vue'
+import AppMain from '@/components/AppMain.vue'
 export default defineComponent({
   components: {
     TopMenu,
@@ -30,7 +30,8 @@ export default defineComponent({
     AppMain
   },
   setup() {
-    return {};
+    return {
+    };
   },
 });
 </script>
@@ -52,6 +53,8 @@ export default defineComponent({
     color: rgb(51, 51, 51);
   }
 
-  .el-main {}
+  .el-main {
+    padding: 0px;
+  }
 }
 </style>
