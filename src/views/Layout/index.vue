@@ -5,7 +5,12 @@
         <TopMenu />
       </el-header>
       <el-container>
-        <AppMain />
+        <el-aside>
+          <Collapse />
+        </el-aside>
+        <el-main>
+          <AppMain />
+        </el-main>
       </el-container>
     </el-container>
   </div>
@@ -37,16 +42,16 @@ export default defineComponent({
     height: 50px;
     background-color: #242f42;
     padding: 0px;
+    z-index: 999;
   }
 
   .el-aside {
     height: calc(100vh - 50px);
-    background-color: #fff;
+    width: 210px;
+    background-color: rgb(245, 245, 245);
+    color: rgb(51, 51, 51);
   }
 
-  .el-container {
-    z-index: -999;
-    height: 50px;
-  }
+  .el-main {}
 }
 </style>

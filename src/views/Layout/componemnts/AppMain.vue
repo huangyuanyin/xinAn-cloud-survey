@@ -1,7 +1,5 @@
 <template>
-    <div>
-        <router-view :key="key"></router-view>
-    </div>
+    <router-view :key="key"></router-view>
 </template>
 
 <script lang="ts">
@@ -11,7 +9,7 @@ import { useRoute } from 'vue-router'
 export default defineComponent({
     setup() {
         const route = useRoute()
-        const key = computed(()=>{
+        const key = computed(() => {
             return route.path
         })
         return {
