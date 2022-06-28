@@ -11,11 +11,11 @@
             <ArrowRight />
           </el-icon>
         </el-menu-item>
-        <el-menu-item index="performanceManagement">
+        <el-menu-item index="POCTest">
           <el-icon>
             <IconMenu />
           </el-icon>
-          <span>性能管理</span>
+          <span>POC测试</span>
         </el-menu-item>
         <el-sub-menu index="1">
           <template #title>

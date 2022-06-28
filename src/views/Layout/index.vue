@@ -18,10 +18,10 @@
 
 <script lang="ts">
 import { defineComponent } from "vue";
-import TopMenu from "./componemnts/TopMenu.vue";
-import Collapse from "./componemnts/Collapse.vue";
-import Breadcrumb from "./componemnts/Breadcrumb.vue";
-import AppMain from './componemnts/AppMain.vue'
+import TopMenu from "./components/TopMenu.vue";
+import Collapse from "@/components/CollapseMenu.vue";
+import Breadcrumb from "./components/Breadcrumb.vue";
+import AppMain from './components/AppMain.vue'
 export default defineComponent({
   components: {
     TopMenu,
