@@ -20,7 +20,10 @@ const routes = [
     children: [
       {
         path: '/performanceManagement',
-        component: PerformanceManagement
+        component: PerformanceManagement,
+        meta: {
+          title: "性能管理"
+        }
       },
     ]
   },

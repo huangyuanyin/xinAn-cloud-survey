@@ -6,8 +6,8 @@ import { getToken } from "./auth";
 const service = axios.create({
   // baseURL:"http://ceshi13.dishait.cn/"
   // baseURL:"http://10.20.84.55:8000/",
-  baseURL: "http://10.20.70.89:8082",
-  // baseURL: '/api',
+  // baseURL: "http://10.20.70.89:8082",
+  baseURL: '/api',
   timeout: 12000,
 })
 
