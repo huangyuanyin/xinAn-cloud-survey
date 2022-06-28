@@ -2,7 +2,7 @@
   <div class="performanceManagement">
     <el-breadcrumb separator="/">
       <el-breadcrumb-item :to="{ path: '/home' }">首页</el-breadcrumb-item>
-      <el-breadcrumb-item>性能管理</el-breadcrumb-item>
+      <el-breadcrumb-item>概览</el-breadcrumb-item>
     </el-breadcrumb>
   </div>
 </template>
@@ -23,7 +23,4 @@ export default defineComponent({
 </script>
 
 <style lang="scss" scoped>
-.performanceManagement {
-  margin: 16px 0 0 16px;
-}
 </style>

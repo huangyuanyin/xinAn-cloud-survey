@@ -1,16 +1,16 @@
 <template>
-  <el-menu default-active="2" class="el-menu-vertical-demo" :collapse="false" active-text-color="rgb(85, 85, 85)"
-    background-color="rgb(245, 245, 245)" text-color="rgb(51, 51, 51)">
+  <el-menu default-active="overview" class="el-menu-vertical-demo" :collapse="false" active-text-color="rgb(85, 85, 85)"
+    background-color="rgb(245, 245, 245)" text-color="rgb(51, 51, 51)" router>
     <el-menu-item index="1" disabled>
       <template #title>POC测试</template>
     </el-menu-item>
-    <el-menu-item index="4">
+    <el-menu-item index="overview">
       <el-icon>
         <document />
       </el-icon>
       <template #title>概览</template>
     </el-menu-item>
-    <el-sub-menu index="2">
+    <el-sub-menu index="performanceManagement">
       <template #title>
         <el-icon>
           <location />
@@ -18,7 +18,7 @@
         <span>性能管理</span>
       </template>
       <el-menu-item-group>
-        <el-menu-item index="1-1">设备管理</el-menu-item>
+        <el-menu-item index="deviceManagement">设备管理</el-menu-item>
         <el-menu-item index="1-2">模板管理</el-menu-item>
       </el-menu-item-group>
     </el-sub-menu>
@@ -60,5 +60,4 @@ export default defineComponent({
     padding: 0px;
   }
 }
-
 </style>

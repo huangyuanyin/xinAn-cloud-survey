@@ -52,9 +52,5 @@ export default defineComponent({
     background-color: rgb(245, 245, 245);
     color: rgb(51, 51, 51);
   }
-
-  .el-main {
-    padding: 0px;
-  }
 }
 </style>
