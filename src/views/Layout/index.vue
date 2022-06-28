@@ -5,7 +5,7 @@
         <TopMenu />
       </el-header>
       <el-container>
-        <el-main>内容</el-main>
+        <AppMain />
       </el-container>
     </el-container>
   </div>
@@ -16,11 +16,13 @@ import { defineComponent } from "vue";
 import TopMenu from "./componemnts/TopMenu.vue";
 import Collapse from "./componemnts/Collapse.vue";
 import Breadcrumb from "./componemnts/Breadcrumb.vue";
+import AppMain from './componemnts/AppMain.vue'
 export default defineComponent({
   components: {
     TopMenu,
     Collapse,
     Breadcrumb,
+    AppMain
   },
   setup() {
     return {};

@@ -1,7 +1,7 @@
 <template>
   <div class="drawer-wrapper">
     <el-drawer v-model="isDrawer" :direction="direction" :append-to-body="false" :z-index="-1" :with-header="false">
-      <el-menu default-active="2" class="el-menu-vertical-demo">
+      <el-menu default-active="2" class="el-menu-vertical-demo" router>
         <el-menu-item index="5" class="elMenu">
           <el-icon>
             <Setting />
@@ -10,6 +10,12 @@
           <el-icon class="arrow">
             <ArrowRight />
           </el-icon>
+        </el-menu-item>
+        <el-menu-item index="performanceManagement">
+          <el-icon>
+            <IconMenu />
+          </el-icon>
+          <span>性能管理</span>
         </el-menu-item>
         <el-sub-menu index="1">
           <template #title>

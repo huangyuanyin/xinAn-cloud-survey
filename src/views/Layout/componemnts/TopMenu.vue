@@ -138,6 +138,7 @@ export default defineComponent({
   align-items: center;
   height: 100%;
   box-shadow: -1px 2px 14px 0px;
+
   .logo {
     display: flex;
     align-items: center;
