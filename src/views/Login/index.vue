@@ -15,7 +15,7 @@
         </div>
       </div>
       <div class="login-right">
-        <Login></Login>
+        <Login />
       </div>
     </div>
   </div>

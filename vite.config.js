@@ -21,18 +21,18 @@ export default defineConfig(({ mode }) => {
     //   'process.env.VITE_API_BASE_URL':JSON.stringify(env.VITE_API_BASE_URL)
     // },
 
-    // server: {
-    //   proxy: {
-    //     '/api': {
-    //       // target:"http://ceshi13.dishait.cn",
-    //       target: "10.20.86.27:8000",
-    //       changeOrigin: true,
-    //       pathRewrite: {
-    //         '^/api': ''
-    //       }
-    //     }
-    //   }
-    // },
+    server: {
+      proxy: {
+        '/api': {
+          // target:"http://ceshi13.dishait.cn",
+          target: "http://10.20.70.89:8082",
+          changeOrigin: true,
+          pathRewrite: {
+            '^/api': ''
+          }
+        }
+      }
+    },
 
     plugins: [
       vue(),
