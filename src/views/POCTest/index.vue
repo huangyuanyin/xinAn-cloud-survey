@@ -1,9 +1,10 @@
 <template>
   <div class="performanceManagement">
-    <el-breadcrumb separator="/">
+    <!-- <el-breadcrumb separator="/">
       <el-breadcrumb-item :to="{ path: '/home' }">首页</el-breadcrumb-item>
       <el-breadcrumb-item>概览</el-breadcrumb-item>
-    </el-breadcrumb>
+    </el-breadcrumb> -->
+    <router-view></router-view>
   </div>
 </template>
 

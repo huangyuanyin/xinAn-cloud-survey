@@ -11,7 +11,7 @@
             <ArrowRight />
           </el-icon>
         </el-menu-item>
-        <el-menu-item index="POCTest">
+        <el-menu-item index="/POCTest/overview">
           <el-icon>
             <IconMenu />
           </el-icon>

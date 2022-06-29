@@ -47,7 +47,7 @@ export default defineComponent({
           store
             .Login(formData)
             .then(() => {
-              router.push("/POCTest");
+              router.push("/POCTest/overview");
             })
             .finally(() => {
               loading.value = false;

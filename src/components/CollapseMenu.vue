@@ -1,7 +1,7 @@
 <template>
   <el-menu default-active="overview" class="el-menu-vertical-demo" :collapse="false" active-text-color="rgb(85, 85, 85)"
     background-color="rgb(245, 245, 245)" text-color="rgb(51, 51, 51)" router>
-    <el-menu-item index="1" disabled>
+    <el-menu-item disabled>
       <template #title>POC测试</template>
     </el-menu-item>
     <el-menu-item index="overview">
@@ -18,7 +18,7 @@
         <span>性能管理</span>
       </template>
       <el-menu-item-group>
-        <el-menu-item index="deviceManagement">设备管理</el-menu-item>
+        <el-menu-item index="/POCTest/deviceManagement">设备管理</el-menu-item>
         <el-menu-item index="1-2">模板管理</el-menu-item>
       </el-menu-item-group>
     </el-sub-menu>

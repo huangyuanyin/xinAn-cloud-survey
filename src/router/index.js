@@ -15,7 +15,7 @@ const routes = [
     meta:{
       title:"登录页面"
     },
-    component: import("@/views/Login/index.vue")
+    component: () => import("@/views/Login/index.vue")
   },
   {
     path: '/home',
@@ -27,16 +27,26 @@ const routes = [
         meta: {
           title: "POC测试"
         },
-        component: import("@/views/POCTest/index.vue")
+        component: () => import("@/views/POCTest/index.vue"),
+        children:[
+          {
+            path: '/POCTest/overview',
+            name:"Overview",
+            meta: {
+              title: "概览"
+            },
+            component: () => import("@/views/POCTest/overview/index.vue")
+          },
+          {
+            path: '/POCTest/deviceManagement',
+            name:"DeviceManagement",
+            meta: {
+              title: "设备管理"
+            },
+            component: () => import("@/views/POCTest/deviceManagement/index.vue")
+          }
+        ]
       },
-      {
-        path: '/deviceManagement',
-        name:"DeviceManagement",
-        meta: {
-          title: "设备管理"
-        },
-        component: () => import("@/views/POCTest/deviceManagement/index.vue")
-      }
     ]
   },
   {
