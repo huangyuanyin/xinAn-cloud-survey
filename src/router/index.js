@@ -1,18 +1,21 @@
 import { createRouter, createWebHashHistory } from 'vue-router'
 
-import login from "@/views/Login/index.vue";
-import Layout from "@/views/Layout/index.vue";
-import NotFound from "@/views/exception/404.vue";
-import POCTest from "@/views/POCTest/index.vue" // POC测试
-import DeviceManagement from "@/views/POCTest/deviceManagement/index.vue" // 设备管理
+import Layout from "@/views/Layout/index.vue"; // 布局组件 不需要懒加载
+
 const routes = [
   {
     path: '/',
-    component: login
+    name:"",
+    redirect:"/home",
+    component: Layout
   },
   {
     path: '/login',
-    component: login
+    name:"Login",
+    meta:{
+      title:"登录页面"
+    },
+    component: import("@/views/Login/index.vue")
   },
   {
     path: '/home',
@@ -20,24 +23,29 @@ const routes = [
     children: [
       {
         path: '/POCTest',
-        component: POCTest,
+        name:"POCTest",
         meta: {
           title: "POC测试"
-        }
+        },
+        component: import("@/views/POCTest/index.vue")
       },
       {
         path: '/deviceManagement',
-        component: DeviceManagement,
+        name:"DeviceManagement",
         meta: {
           title: "设备管理"
-        }
+        },
+        component: () => import("@/views/POCTest/deviceManagement/index.vue")
       }
     ]
   },
   {
     path: '/:pathMatch(.*)*',
     name: 'NotFound',
-    component: NotFound
+    meta:{
+      title:"404页面"
+    },
+    component: () => import("@/views/exception/404.vue")
   },
 ]
 
