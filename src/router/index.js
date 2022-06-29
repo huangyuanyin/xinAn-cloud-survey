@@ -47,6 +47,14 @@ const routes = [
           }
         ]
       },
+      {
+        path: '/test',
+        name:"Test",
+        meta: {
+          title: "测试"
+        },
+        component: () => import("@/views/test/index.vue"),
+      }
     ]
   },
   {

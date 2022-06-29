@@ -1,9 +1,6 @@
 <template>
   <div class="performanceManagement">
-    <!-- <el-breadcrumb separator="/">
-      <el-breadcrumb-item :to="{ path: '/home' }">首页</el-breadcrumb-item>
-      <el-breadcrumb-item>概览</el-breadcrumb-item>
-    </el-breadcrumb> -->
+    <!--此文件用于解决三级路由跳转 路径改变页面不改变问题-->
     <router-view></router-view>
   </div>
 </template>

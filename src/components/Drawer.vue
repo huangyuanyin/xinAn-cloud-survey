@@ -2,7 +2,7 @@
   <div class="drawer-wrapper">
     <el-drawer v-model="isDrawer" :direction="direction" :append-to-body="false" :z-index="-1" :with-header="false">
       <el-menu default-active="POCTest" class="el-menu-vertical-demo" @select="handleClose" router>
-        <el-menu-item index="5" class="elMenu">
+        <el-menu-item class="elMenu">
           <el-icon>
             <Setting />
           </el-icon>
@@ -24,35 +24,16 @@
             </el-icon>
             <span>文件管理</span>
           </template>
-          <el-menu-item-group title="Group One">
-            <el-menu-item index="1-1">item one</el-menu-item>
-            <el-menu-item index="1-2">item one</el-menu-item>
+          <el-menu-item-group>
+            <el-menu-item index="1-1">文件管理一</el-menu-item>
+            <el-menu-item index="1-2">文件管理二</el-menu-item>
           </el-menu-item-group>
-          <el-menu-item-group title="Group Two">
-            <el-menu-item index="1-3">item three</el-menu-item>
-          </el-menu-item-group>
-          <el-sub-menu index="1-4">
-            <template #title>item four</template>
-            <el-menu-item index="1-4-1">item one</el-menu-item>
-          </el-sub-menu>
         </el-sub-menu>
-        <el-menu-item index="2">
-          <el-icon>
-            <IconMenu />
-          </el-icon>
-          <span>项目管理</span>
-        </el-menu-item>
-        <el-menu-item index="3">
-          <el-icon>
-            <document />
-          </el-icon>
-          <span>日志管理</span>
-        </el-menu-item>
-        <el-menu-item index="4">
+        <el-menu-item index="/test">
           <el-icon>
             <Setting />
           </el-icon>
-          <span>资产管理</span>
+          <span>测试</span>
         </el-menu-item>
       </el-menu>
       <span class="close" @click="handleClose">
@@ -147,6 +128,9 @@ export default defineComponent({
     line-height: 20px;
     font-size: 16px;
     cursor: pointer;
+  }
+  ::v-deep .el-menu-item-group__title {
+    padding: 0px;
   }
 }
 </style>
