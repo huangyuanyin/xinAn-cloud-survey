@@ -1,0 +1,68 @@
+<template>
+  <el-menu default-active="" class="el-menu" :collapse="false" active-text-color="rgb(85, 85, 85)"
+    background-color="rgb(245, 245, 245)" text-color="rgb(51, 51, 51)" router>
+    <template v-for="(item, index) in menuList" :key="index + 'menu'">
+      <!-- 一级菜单(无子级) -->
+      <el-menu-item v-if="!item.children.length" :index="item.path" :disabled="item.isDisabled">
+        <el-icon>
+          <document v-if="!item.type" />
+        </el-icon>
+        <template #title>{{ item.title }}</template>
+      </el-menu-item>
+      <!-- 一级菜单(有子级) -->
+      <el-sub-menu v-if="item.children && item.children.length" :index="item.id">
+        <!-- 一级菜单模板区域 -->
+        <template #title>
+          <el-icon>
+            <location />
+          </el-icon>
+          <span>{{ item.title }}</span>
+        </template>
+        <el-menu-item-group>
+          <!--二级菜单模板区域-->
+          <el-menu-item v-for="(subItem, index) in item.children" :key="index + 'subItem'" :index="subItem.path">
+            <template #title>
+              <el-icon></el-icon>
+              <span>{{ subItem.title }}</span>
+            </template>
+          </el-menu-item>
+        </el-menu-item-group>
+      </el-sub-menu>
+    </template>
+  </el-menu>
+</template>
+
+<script lang="ts">
+import { defineComponent, ref } from 'vue'
+import { POCTestMenuData } from '../data/menu'
+import {
+  Document,
+  Menu as IconMenu,
+  Location,
+  Setting,
+} from "@element-plus/icons-vue";
+export default defineComponent({
+  components: { Document, IconMenu, Location, Setting },
+  setup() {
+    const menuList = ref(POCTestMenuData)
+    return {
+      menuList
+    }
+  },
+})
+</script>
+
+<style lang="scss" scoped>
+.el-menu {
+  height: 100%;
+
+  .el-menu-item.is-disabled {
+    opacity: 100%;
+    cursor: context-menu;
+  }
+
+  ::v-deep .el-menu-item-group__title {
+    padding: 0px;
+  }
+}
+</style>

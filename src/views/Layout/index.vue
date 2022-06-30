@@ -6,7 +6,8 @@
       </el-header>
       <el-container>
         <el-aside>
-          <Collapse />
+          <!-- <Collapse /> -->
+          <TestMenuVue />
         </el-aside>
         <el-main>
           <AppMain />
@@ -19,13 +20,15 @@
 <script lang="ts">
 import { defineComponent } from "vue";
 import TopMenu from "./components/TopMenu.vue";
-import Collapse from "@/components/CollapseMenu.vue";
+import TestMenuVue from "../../components/TestMenu.vue";
+import Collapse from "../../components/CollapseMenu.vue";
 import Breadcrumb from "./components/Breadcrumb.vue";
-import AppMain from '@/components/AppMain.vue'
+import AppMain from '../../components/AppMain.vue'
 export default defineComponent({
   components: {
     TopMenu,
     Collapse,
+    TestMenuVue,
     Breadcrumb,
     AppMain
   },
