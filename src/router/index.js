@@ -5,15 +5,15 @@ import Layout from "@/views/Layout/index.vue"; // 布局组件 不需要懒加�
 const routes = [
   {
     path: '/',
-    name:"",
-    redirect:"/home",
+    name: "",
+    redirect: "/home",
     component: Layout
   },
   {
     path: '/login',
-    name:"Login",
-    meta:{
-      title:"登录页面"
+    name: "Login",
+    meta: {
+      title: "登录页面"
     },
     component: () => import("@/views/Login/index.vue")
   },
@@ -23,15 +23,15 @@ const routes = [
     children: [
       {
         path: '/POCTest',
-        name:"POCTest",
+        name: "POCTest",
         meta: {
           title: "POC测试"
         },
         component: () => import("@/views/POCTest/index.vue"),
-        children:[
+        children: [
           {
             path: '/POCTest/overview',
-            name:"Overview",
+            name: "Overview",
             meta: {
               title: "概览"
             },
@@ -39,17 +39,33 @@ const routes = [
           },
           {
             path: '/POCTest/deviceManagement',
-            name:"DeviceManagement",
+            name: "DeviceManagement",
             meta: {
               title: "设备管理"
             },
             component: () => import("@/views/POCTest/deviceManagement/index.vue")
-          }
+          },
+          {
+            path: '/POCTest/performanceTestTask',
+            name: "PerformanceTestTask",
+            meta: {
+              title: "性能测试任务"
+            },
+            component: () => import("@/views/POCTest/performanceTestTask/index.vue")
+          },
+          {
+            path: '/POCTest/dataAnalysis',
+            name: "DataAnalysis",
+            meta: {
+              title: "性能测试任务"
+            },
+            component: () => import("@/views/POCTest/dataAnalysis/index.vue")
+          },
         ]
       },
       {
         path: '/test',
-        name:"Test",
+        name: "Test",
         meta: {
           title: "测试"
         },
@@ -60,8 +76,8 @@ const routes = [
   {
     path: '/:pathMatch(.*)*',
     name: 'NotFound',
-    meta:{
-      title:"404页面"
+    meta: {
+      title: "404页面"
     },
     component: () => import("@/views/exception/404.vue")
   },
