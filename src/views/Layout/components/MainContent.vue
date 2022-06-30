@@ -5,11 +5,7 @@
 <script lang="ts">
 import { computed, defineComponent } from 'vue'
 import { useRoute } from 'vue-router'
-import Collapse from "./CollapseMenu.vue";
 export default defineComponent({
-  components: {
-    Collapse
-  },
   setup() {
     const route = useRoute()
     const key = computed(() => {

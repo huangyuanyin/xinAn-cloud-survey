@@ -10,7 +10,7 @@
           <TestMenuVue />
         </el-aside>
         <el-main>
-          <AppMain />
+          <MainContent />
         </el-main>
       </el-container>
     </el-container>
@@ -20,17 +20,17 @@
 <script lang="ts">
 import { defineComponent } from "vue";
 import TopMenu from "./components/TopMenu.vue";
+import MainContent from "./components/MainContent.vue";
 import TestMenuVue from "../../components/TestMenu.vue";
 import Collapse from "../../components/CollapseMenu.vue";
 import Breadcrumb from "./components/Breadcrumb.vue";
-import AppMain from '../../components/AppMain.vue'
 export default defineComponent({
   components: {
     TopMenu,
+    MainContent,
     Collapse,
     TestMenuVue,
     Breadcrumb,
-    AppMain
   },
   setup() {
     return {
