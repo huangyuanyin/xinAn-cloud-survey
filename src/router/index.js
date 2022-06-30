@@ -54,10 +54,18 @@ const routes = [
             component: () => import("@/views/POCTest/performanceTestTask/index.vue")
           },
           {
+            path: '/POCTest/taskDetail',
+            name: "TaskDetail",
+            meta: {
+              title: "性能测试任务"
+            },
+            component: () => import("@/views/POCTest/performanceTestTask/taskDetail.vue")
+          },
+          {
             path: '/POCTest/dataAnalysis',
             name: "DataAnalysis",
             meta: {
-              title: "性能测试任务"
+              title: "数据分析"
             },
             component: () => import("@/views/POCTest/dataAnalysis/index.vue")
           },

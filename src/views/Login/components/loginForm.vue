@@ -5,7 +5,8 @@
         <el-input v-model="formData.username" placeholder="请输入用户名" :prefix-icon="Avatar" />
       </el-form-item>
       <el-form-item label="" prop="password">
-        <el-input v-model="formData.password" type="password" placeholder="请输入密码" show-password :prefix-icon="Lock" />
+        <el-input v-model="formData.password" @keyup.enter.native="onLogin(ruleFormRef)" type="password"
+          placeholder="请输入密码" show-password :prefix-icon="Lock" />
       </el-form-item>
       <el-form-item>
         <el-button class="submit-style" type="primary" @click="onLogin(ruleFormRef)" :loading="loading">
@@ -47,7 +48,7 @@ export default defineComponent({
           store
             .Login(formData)
             .then(() => {
-              router.push("/POCTest/overview");
+              router.replace('/')
             })
             .finally(() => {
               loading.value = false;
