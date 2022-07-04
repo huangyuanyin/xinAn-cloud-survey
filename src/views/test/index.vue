@@ -1,8 +1,10 @@
 <template>
-  <!--一级菜单下面所拥有的二级菜单-->
+  <!-- 一级菜单下面所拥有的二级菜单 -->
   <TestMenuVue :menuList="menuList" />
-  <!--以及二级菜单所对应的页面-->
+  <!-- 以及二级菜单所对应的页面 -->
   <el-main>
+    <!-- 面包屑 -->
+    <Breadcrumb />
     <router-view></router-view>
   </el-main>
 </template>
@@ -10,10 +12,12 @@
 <script lang="ts">
 import { defineComponent, ref } from "vue";
 import TestMenuVue from "../../components/TestMenu.vue";
+import Breadcrumb from "../../components/Breadcrumb.vue";
 import { cheshiMenuData } from "../../data/menu";
 export default defineComponent({
   components: {
     TestMenuVue,
+    Breadcrumb,
   },
   setup() {
     const menuList = ref(cheshiMenuData);

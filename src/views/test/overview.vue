@@ -1,4 +1,12 @@
 <template>
-  <div>概览</div>
+  <div>测试</div>
 </template>
+
+<script lang="ts">
+import { defineComponent } from "vue";
+export default defineComponent({
+  setup() {},
+});
+</script>
+
 

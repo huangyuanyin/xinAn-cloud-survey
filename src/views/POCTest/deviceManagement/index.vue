@@ -1,13 +1,13 @@
 <template>
   <div class="performanceManagement">
-    <el-breadcrumb separator="/">
-      <el-breadcrumb-item :to="{ path: '/POCTest/overview' }">POC测试</el-breadcrumb-item>
-      <el-breadcrumb-item>设备管理</el-breadcrumb-item>
-    </el-breadcrumb>
-
     <el-tabs v-model="activeName" class="tabs" @tab-click="handleClick">
       <el-tab-pane label="仪表管理" name="instrumentManagement">
-        <el-button type="primary" @click="dialogVisible = true" style="margin-bottom: 20px">添加设备</el-button>
+        <el-button
+          type="primary"
+          @click="dialogVisible = true"
+          style="margin-bottom: 20px"
+          >添加设备</el-button
+        >
         <Table />
       </el-tab-pane>
       <el-tab-pane label="被测设备管理" name="second">被测设备管理</el-tab-pane>
@@ -15,21 +15,41 @@
       <el-tab-pane label="build管理" name="fourth">build管理</el-tab-pane>
     </el-tabs>
 
-    <el-dialog v-model="dialogVisible" title="添加设备" width="25%" :before-close="handleClose">
+    <el-dialog
+      v-model="dialogVisible"
+      title="添加设备"
+      width="25%"
+      :before-close="handleClose"
+    >
       <span>
-        <el-form :inline="false" :model="addDeviceForm" ref="addDeviceRuleFormRef" :rules="addDeviceFormRules"
-          class="addDevice-form" label-width="110px">
+        <el-form
+          :inline="false"
+          :model="addDeviceForm"
+          ref="addDeviceRuleFormRef"
+          :rules="addDeviceFormRules"
+          class="addDevice-form"
+          label-width="110px"
+        >
           <el-form-item label="IP" prop="ip">
             <el-input v-model="addDeviceForm.ip" placeholder="请输入..." />
           </el-form-item>
           <el-form-item label="用户名" prop="userName">
-            <el-input v-model="addDeviceForm.userName" placeholder="请输入..." />
+            <el-input
+              v-model="addDeviceForm.userName"
+              placeholder="请输入..."
+            />
           </el-form-item>
           <el-form-item label="密码" prop="password">
-            <el-input v-model="addDeviceForm.password" placeholder="请输入..." />
+            <el-input
+              v-model="addDeviceForm.password"
+              placeholder="请输入..."
+            />
           </el-form-item>
           <el-form-item label="设备接口情况" prop="interface">
-            <el-input v-model="addDeviceForm.interface" placeholder="请输入..." />
+            <el-input
+              v-model="addDeviceForm.interface"
+              placeholder="请输入..."
+            />
           </el-form-item>
           <el-form-item label="设备状态探测" prop="status">
             <el-select v-model="addDeviceForm.status" placeholder="请选择...">
@@ -41,8 +61,14 @@
       </span>
       <template #footer>
         <span class="dialog-footer">
-          <el-button @click="onResetDeviceForm(addDeviceRuleFormRef)">取消</el-button>
-          <el-button type="primary" @click="onAddDeviceForm(addDeviceRuleFormRef)">添加</el-button>
+          <el-button @click="onResetDeviceForm(addDeviceRuleFormRef)"
+            >取消</el-button
+          >
+          <el-button
+            type="primary"
+            @click="onAddDeviceForm(addDeviceRuleFormRef)"
+            >添加</el-button
+          >
         </span>
       </template>
     </el-dialog>
@@ -50,65 +76,75 @@
 </template>
 
 <script lang="ts">
-import { defineComponent } from 'vue'
-import { ref, reactive } from 'vue'
-import type { TabsPaneContext } from 'element-plus'
-import Table from "./component/table.vue"
-import type { FormInstance, FormRules } from 'element-plus'
+import { defineComponent } from "vue";
+import { ref, reactive } from "vue";
+import type { TabsPaneContext } from "element-plus";
+import Table from "./component/table.vue";
+import type { FormInstance, FormRules } from "element-plus";
 export default defineComponent({
   components: { Table },
   setup() {
-    const activeName = ref('instrumentManagement')
-    const dialogVisible = ref(false)
+    const activeName = ref("instrumentManagement");
+    const dialogVisible = ref(false);
     const addDeviceForm = reactive({
       ip: "",
       userName: "",
       password: "",
-      interface: '',
-      status: '',
-    })
-    const addDeviceRuleFormRef = ref<FormInstance>()
+      interface: "",
+      status: "",
+    });
+    const addDeviceRuleFormRef = ref<FormInstance>();
     const addDeviceFormRules = reactive<FormRules>({
-      ip: [{ required: true, message: 'ip不能为空', trigger: 'blur' }],
-      userName: [{ required: true, message: '用户名不能为空', trigger: 'blur' }],
-      password: [{ required: true, message: '密码不能为空', trigger: 'blur' }],
-      interface: [{ required: true, message: '请填写设备接口情况', trigger: 'blur' }],
-      status: [{ required: true, message: '请选择设备状态', trigger: 'change' }],
-    })
+      ip: [{ required: true, message: "ip不能为空", trigger: "blur" }],
+      userName: [
+        { required: true, message: "用户名不能为空", trigger: "blur" },
+      ],
+      password: [{ required: true, message: "密码不能为空", trigger: "blur" }],
+      interface: [
+        { required: true, message: "请填写设备接口情况", trigger: "blur" },
+      ],
+      status: [
+        { required: true, message: "请选择设备状态", trigger: "change" },
+      ],
+    });
     const handleClick = (tab: TabsPaneContext, event: Event) => {
-      console.log(tab, event)
-    }
+      console.log(tab, event);
+    };
     const onAddDeviceForm = async (formEl: FormInstance | undefined) => {
-      if (!formEl) return
+      if (!formEl) return;
       await formEl.validate((valid, fields) => {
         if (valid) {
-          console.log('submit!')
-          dialogVisible.value = false
+          console.log("submit!");
+          dialogVisible.value = false;
         } else {
-          console.log('error submit!', fields)
+          console.log("error submit!", fields);
         }
-      })
-    }
+      });
+    };
     const onResetDeviceForm = (formEl: FormInstance | undefined) => {
-      if (!formEl) return
-      formEl.resetFields()
-      dialogVisible.value = false
-    }
+      if (!formEl) return;
+      formEl.resetFields();
+      dialogVisible.value = false;
+    };
     const handleClose = (done: () => void) => {
-      dialogVisible.value = false
-    }
+      dialogVisible.value = false;
+    };
     return {
-      activeName, dialogVisible, addDeviceForm, handleClick, handleClose, onAddDeviceForm, onResetDeviceForm, addDeviceRuleFormRef, addDeviceFormRules
-    }
+      activeName,
+      dialogVisible,
+      addDeviceForm,
+      handleClick,
+      handleClose,
+      onAddDeviceForm,
+      onResetDeviceForm,
+      addDeviceRuleFormRef,
+      addDeviceFormRules,
+    };
   },
-})
+});
 </script>
 
 <style lang="scss" scoped>
-.tabs {
-  margin-top: 25px;
-}
-
 .addDevice-form {
   .el-input {
     width: 214px;
