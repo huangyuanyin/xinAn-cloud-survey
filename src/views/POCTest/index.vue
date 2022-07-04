@@ -1,23 +1,30 @@
 <template>
-  <div class="performanceManagement">
-    <!--此文件用于解决三级路由跳转 路径改变页面不改变问题-->
+  <!--一级菜单下面所拥有的二级菜单-->
+  <TestMenuVue :menuList="menuList" />
+  <!--以及二级菜单所对应的页面-->
+  <el-main>
     <router-view></router-view>
-  </div>
+  </el-main>
 </template>
 
 <script lang="ts">
-import { defineComponent, reactive } from 'vue'
-import { useRouter } from 'vue-router'
+import { defineComponent, reactive, ref } from "vue";
+import { useRouter } from "vue-router";
+import TestMenuVue from "../../components/TestMenu.vue";
+import { POCTestMenuData } from "../../data/menu";
 export default defineComponent({
-  setup() {
-    const router = useRouter()
-    const data = reactive({
-    })
-    return {
-      router, data
-    }
+  components: {
+    TestMenuVue,
   },
-})
+  setup() {
+    const router = useRouter();
+    const menuList = ref(POCTestMenuData);
+    return {
+      router,
+      menuList,
+    };
+  },
+});
 </script>
 
 <style lang="scss" scoped>

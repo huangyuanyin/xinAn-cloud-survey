@@ -5,36 +5,40 @@
         <TopMenu />
       </el-header>
       <el-container>
-        <el-aside>
-          <!-- <Collapse /> -->
+        <!-- <el-aside>
           <TestMenuVue />
         </el-aside>
         <el-main>
           <MainContent />
-        </el-main>
+        </el-main> -->
+        <router-view :key="key"></router-view>
       </el-container>
     </el-container>
   </div>
 </template>
 
 <script lang="ts">
-import { defineComponent } from "vue";
+import { defineComponent, computed } from "vue";
+import { useRoute } from "vue-router";
 import TopMenu from "./components/TopMenu.vue";
-import MainContent from "./components/MainContent.vue";
+// import MainContent from "./components/MainContent.vue";
 import TestMenuVue from "../../components/TestMenu.vue";
 import Collapse from "../../components/CollapseMenu.vue";
 import Breadcrumb from "./components/Breadcrumb.vue";
 export default defineComponent({
   components: {
     TopMenu,
-    MainContent,
+    // MainContent,
     Collapse,
     TestMenuVue,
     Breadcrumb,
   },
   setup() {
-    return {
-    };
+    const route = useRoute();
+    const key = computed(() => {
+      return route.path;
+    });
+    return { route, key };
   },
 });
 </script>
@@ -47,13 +51,6 @@ export default defineComponent({
     background-color: #242f42;
     padding: 0px;
     z-index: 999;
-  }
-
-  .el-aside {
-    height: calc(100vh - 50px);
-    width: 210px;
-    background-color: rgb(245, 245, 245);
-    color: rgb(51, 51, 51);
   }
 }
 </style>

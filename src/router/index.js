@@ -79,6 +79,15 @@ const routes = [
         },
         redirect: "/test/overview", // 该配置是若点击选择一级菜单时，默认选中并跳转到该一级菜单下的第一个二级菜单
         component: () => import("@/views/test/index.vue"),
+        children: [
+          {
+            path: "/test/overview",
+            meta: {
+              title: "概览"
+            },
+            component: () => import("@/views/test/overview.vue"),
+          }
+        ]
       }
     ]
   },
