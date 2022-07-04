@@ -56,6 +56,7 @@ export default defineComponent({
 <style lang="scss" scoped>
 .breadcrumb {
   padding-bottom: 20px;
+  cursor: pointer;
   .el-breadcrumb {
     display: inline-flex;
     height: 16px;
