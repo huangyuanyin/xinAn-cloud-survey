@@ -48,6 +48,7 @@ import {
   Close,
 } from "@element-plus/icons-vue";
 import { useRouter } from "vue-router";
+import { useAppStore } from "../store/modules/app";
 export default defineComponent({
   components: {
     IconMenu,
@@ -65,6 +66,7 @@ export default defineComponent({
   },
   setup(props, { emit }) {
     const router = useRouter();
+    const store = useAppStore();
     const menuList = ref([
       { path: "", title: "产品与服务" },
       { path: "/POCTest", title: "POC测试" },
@@ -85,6 +87,7 @@ export default defineComponent({
       router.push({
         path: path,
       });
+      store.isCollapse = false;
       isDrawer.value = false;
     };
     const handleClose = () => {
@@ -92,6 +95,7 @@ export default defineComponent({
     };
     return {
       router,
+      store,
       menuList,
       direction,
       isDrawer,

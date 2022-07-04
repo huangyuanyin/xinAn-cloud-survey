@@ -3,7 +3,7 @@
     <el-menu
       default-active=""
       class="el-menu"
-      :collapse="false"
+      :collapse="store.isCollapse"
       active-text-color="rgb(85, 85, 85)"
       background-color="rgb(245, 245, 245)"
       text-color="rgb(51, 51, 51)"
@@ -60,6 +60,7 @@ import {
   Location,
   Setting,
 } from "@element-plus/icons-vue";
+import { useAppStore } from "../store/modules/app/index";
 export default defineComponent({
   components: { Document, IconMenu, Location, Setting },
   props: {
@@ -69,7 +70,10 @@ export default defineComponent({
     },
   },
   setup() {
-    return {};
+    const store = useAppStore();
+    return {
+      store,
+    };
   },
 });
 </script>
@@ -87,10 +91,13 @@ export default defineComponent({
     padding: 0px;
   }
 }
+.el-menu:not(.el-menu--collapse) {
+  width: 191px;
+}
 .el-aside {
   height: calc(100vh - 50px);
-  width: 210px;
   background-color: rgb(245, 245, 245);
   color: rgb(51, 51, 51);
+  width: auto;
 }
 </style>

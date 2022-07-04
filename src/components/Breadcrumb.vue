@@ -1,6 +1,6 @@
 <template>
   <div class="breadcrumb">
-    <el-icon v-if="isCollapse" @click="handleClick(false)">
+    <el-icon v-if="store.getCollapse" @click="handleClick(false)">
       <Expand />
     </el-icon>
     <el-icon v-else @click="handleClick(true)"><Fold /></el-icon>
@@ -21,6 +21,7 @@ import { defineComponent, watch } from "vue";
 import { Expand, Fold } from "@element-plus/icons-vue";
 import { ref } from "vue";
 import { useRoute } from "vue-router";
+import { useAppStore } from "../store/modules/app/index";
 export default defineComponent({
   components: {
     Expand,
@@ -28,10 +29,10 @@ export default defineComponent({
   },
   setup() {
     const route = useRoute();
+    const store = useAppStore();
     const matchedList = ref([]);
-    const isCollapse = ref<Boolean>(true);
     const handleClick = (val) => {
-      isCollapse.value = val;
+      store.handleCollapse(val);
     };
     watch(
       () => route.path,
@@ -42,8 +43,8 @@ export default defineComponent({
     );
     return {
       route,
+      store,
       matchedList,
-      isCollapse,
       handleClick,
       Expand,
       Fold,
