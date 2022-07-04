@@ -1,39 +1,31 @@
 <template>
   <div class="drawer-wrapper">
-    <el-drawer v-model="isDrawer" :direction="direction" :append-to-body="false" :z-index="-1" :with-header="false">
-      <el-menu default-active="POCTest" class="el-menu-vertical-demo" @select="handleClose" router>
-        <el-menu-item class="elMenu">
+    <el-drawer
+      v-model="isDrawer"
+      :direction="direction"
+      :append-to-body="false"
+      :z-index="-1"
+      :with-header="false"
+    >
+      <el-menu
+        default-active="POCTest"
+        class="el-menu-vertical-demo"
+        @select="handleSelect"
+        router
+      >
+        <el-menu-item
+          v-for="(item, index) in menuList"
+          :key="'menuList' + index"
+          :index="item.path"
+          :disabled="item.title == '产品与服务' ? true : false"
+        >
           <el-icon>
-            <Setting />
+            <Setting v-if="item.title != '产品与服务'" />
           </el-icon>
-          <span>产品与服务</span>
+          <span>{{ item.title }}</span>
           <el-icon class="arrow">
-            <ArrowRight />
+            <ArrowRight v-if="item.title == '产品与服务'" />
           </el-icon>
-        </el-menu-item>
-        <el-menu-item index="/POCTest/overview">
-          <el-icon>
-            <IconMenu />
-          </el-icon>
-          <span>POC测试</span>
-        </el-menu-item>
-        <el-sub-menu index="1">
-          <template #title>
-            <el-icon>
-              <Location />
-            </el-icon>
-            <span>文件管理</span>
-          </template>
-          <el-menu-item-group>
-            <el-menu-item index="1-1">文件管理一</el-menu-item>
-            <el-menu-item index="1-2">文件管理二</el-menu-item>
-          </el-menu-item-group>
-        </el-sub-menu>
-        <el-menu-item index="/test">
-          <el-icon>
-            <Setting />
-          </el-icon>
-          <span>测试</span>
         </el-menu-item>
       </el-menu>
       <span class="close" @click="handleClose">
@@ -53,11 +45,17 @@ import {
   Location,
   Setting,
   ArrowRight,
-  Close
-} from '@element-plus/icons-vue';
+  Close,
+} from "@element-plus/icons-vue";
+import { useRouter } from "vue-router";
 export default defineComponent({
   components: {
-    IconMenu, Document, Location, Setting, ArrowRight, Close
+    IconMenu,
+    Document,
+    Location,
+    Setting,
+    ArrowRight,
+    Close,
   },
   props: {
     drawer: {
@@ -66,21 +64,39 @@ export default defineComponent({
     },
   },
   setup(props, { emit }) {
+    const router = useRouter();
+    const menuList = ref([
+      { path: "", title: "产品与服务" },
+      { path: "/POCTest", title: "POC测试" },
+      { path: "/test", title: "测试" },
+    ]);
     const direction = ref("ltr");
     const isDrawer = computed({
       get() {
         return props.drawer;
       },
       set(value) {
-        emit("changeDrawer", value)
+        emit("changeDrawer", value);
         return value;
       },
     });
+    // 切换菜单栏
+    const handleSelect = (path) => {
+      router.push({
+        path: path,
+      });
+      isDrawer.value = false;
+    };
     const handleClose = () => {
-      isDrawer.value = false
-    }
+      isDrawer.value = false;
+    };
     return {
-      direction, isDrawer, handleClose
+      router,
+      menuList,
+      direction,
+      isDrawer,
+      handleSelect,
+      handleClose,
     };
   },
 });
@@ -104,9 +120,10 @@ export default defineComponent({
   .el-menu-vertical-demo {
     height: 100vh;
     width: 240px;
-
-    .elMenu {
-      background-color: #ebebeb;
+    .el-menu-item.is-disabled {
+      opacity: 1;
+      background-color: #ebebeb !important;
+      cursor: default;
     }
 
     .arrow {

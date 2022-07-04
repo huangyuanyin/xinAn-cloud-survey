@@ -4,18 +4,17 @@ import Layout from "@/views/Layout/index.vue"; // 布局组件 不需要懒加�
 
 const routes = [
   {
-    path: '/',
-    name: "",
-    redirect: "/home",
-    component: Layout
-  },
-  {
     path: '/login',
     name: "Login",
     meta: {
       title: "登录页面"
     },
     component: () => import("@/views/Login/index.vue")
+  },
+  {
+    path: '/',
+    redirect: "/home",
+    component: Layout,
   },
   {
     path: '/home',
@@ -27,6 +26,7 @@ const routes = [
         meta: {
           title: "POC测试"
         },
+        redirect: "/POCTest/overview", // 该配置是若点击选择一级菜单时，默认选中并跳转到该一级菜单下的第一个二级菜单
         component: () => import("@/views/POCTest/index.vue"),
         children: [
           {
@@ -77,6 +77,7 @@ const routes = [
         meta: {
           title: "测试"
         },
+        redirect: "/test/overview", // 该配置是若点击选择一级菜单时，默认选中并跳转到该一级菜单下的第一个二级菜单
         component: () => import("@/views/test/index.vue"),
       }
     ]
