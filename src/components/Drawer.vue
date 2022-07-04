@@ -104,16 +104,16 @@ export default defineComponent({
 
 <style lang="scss" scoped>
 .drawer-wrapper {
-  ::v-deep .el-drawer__header {
+  :deep(.el-drawer__header) {
     margin-bottom: 0px;
     padding: 0px;
   }
 
-  ::v-deep .el-drawer__body {
+  :deep(.el-drawer__body) {
     padding: 0px;
   }
 
-  ::v-deep .el-overlay {
+  :deep(.el-overlay) {
     top: 50px;
   }
 
@@ -146,7 +146,7 @@ export default defineComponent({
     font-size: 16px;
     cursor: pointer;
   }
-  ::v-deep .el-menu-item-group__title {
+  :deep(.el-menu-item-group__title) {
     padding: 0px;
   }
 }

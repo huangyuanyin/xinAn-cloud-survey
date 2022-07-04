@@ -24,14 +24,12 @@ import TopMenu from "./components/TopMenu.vue";
 // import MainContent from "./components/MainContent.vue";
 import TestMenuVue from "../../components/TestMenu.vue";
 import Collapse from "../../components/CollapseMenu.vue";
-import Breadcrumb from "./components/Breadcrumb.vue";
 export default defineComponent({
   components: {
     TopMenu,
     // MainContent,
     Collapse,
     TestMenuVue,
-    Breadcrumb,
   },
   setup() {
     const route = useRoute();

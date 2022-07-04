@@ -1,6 +1,13 @@
 <template>
-  <el-menu default-active="overview" class="el-menu-vertical-demo" :collapse="false" active-text-color="rgb(85, 85, 85)"
-    background-color="rgb(245, 245, 245)" text-color="rgb(51, 51, 51)" router>
+  <el-menu
+    default-active="overview"
+    class="el-menu-vertical-demo"
+    :collapse="false"
+    active-text-color="rgb(85, 85, 85)"
+    background-color="rgb(245, 245, 245)"
+    text-color="rgb(51, 51, 51)"
+    router
+  >
     <el-menu-item disabled>
       <template #title>POC测试</template>
     </el-menu-item>
@@ -56,7 +63,7 @@ export default defineComponent({
     cursor: context-menu;
   }
 
-  ::v-deep .el-menu-item-group__title {
+  :deep(.el-menu-item-group__title) {
     padding: 0px;
   }
 }

@@ -83,7 +83,7 @@ export default defineComponent({
     cursor: default;
   }
 
-  ::v-deep .el-menu-item-group__title {
+  :deep(.el-menu-item-group__title) {
     padding: 0px;
   }
 }
