@@ -22,14 +22,14 @@ import { defineComponent, computed } from "vue";
 import { useRoute } from "vue-router";
 import TopMenu from "./components/TopMenu.vue";
 // import MainContent from "./components/MainContent.vue";
-import TestMenuVue from "../../components/TestMenu.vue";
-import Collapse from "../../components/CollapseMenu.vue";
+// import TestMenuVue from "../../components/TestMenu.vue";
+// import Collapse from "../../components/CollapseMenu.vue";
 export default defineComponent({
   components: {
     TopMenu,
     // MainContent,
-    Collapse,
-    TestMenuVue,
+    // Collapse,
+    // TestMenuVue,
   },
   setup() {
     const route = useRoute();

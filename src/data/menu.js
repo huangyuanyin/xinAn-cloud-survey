@@ -10,7 +10,7 @@ export const cheshiMenuData = [
   {
     id: "02",
     title: "概览",
-    path: "/over",
+    path: "/test/overview",
     isDisabled: false,
     children: [],
   },
@@ -43,7 +43,7 @@ export const POCTestMenuData = [
   {
     id: "02",
     title: "概览",
-    path: "/over",
+    path: "/POCTest/overview",
     isDisabled: false,
     children: [],
   },
