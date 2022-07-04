@@ -80,7 +80,7 @@ export default defineComponent({
 
   .el-menu-item.is-disabled {
     opacity: 100%;
-    cursor: context-menu;
+    cursor: default;
   }
 
   ::v-deep .el-menu-item-group__title {

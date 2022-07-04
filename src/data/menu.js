@@ -13,14 +13,12 @@ export const cheshiMenuData = [
     path: "/over",
     isDisabled: false,
     children: [],
-    type: 1
   },
   {
     id: "03",
     title: "测试管理",
     path: null,
     isDisabled: false,
-    type: 2,
     children: [
       {
         id: "0301",
@@ -28,7 +26,6 @@ export const cheshiMenuData = [
         path: "/ceshiOne",
         isDisabled: false,
         children: [],
-        type: 1
       },
     ]
   },
