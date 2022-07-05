@@ -50,5 +50,9 @@ export default defineComponent({
     padding: 0px;
     z-index: 999;
   }
+  .el-container{
+    overflow: hidden;
+    height: 100vh;
+  }
 }
 </style>

@@ -95,7 +95,7 @@ export default defineComponent({
   width: 191px;
 }
 .el-aside {
-  height: calc(100vh - 50px);
+  min-height: calc(100vh - 50px);
   background-color: rgb(245, 245, 245);
   color: rgb(51, 51, 51);
   width: auto;
