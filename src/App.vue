@@ -1,5 +1,7 @@
 <script setup>
-
+import * as echarts from "echarts";
+import { provide } from "vue";
+provide("echarts", echarts);
 </script>
 
 <template>
@@ -7,7 +9,7 @@
 </template>
 
 <style>
-body{
-  margin: 0px;  
+body {
+  margin: 0px;
 }
 </style>

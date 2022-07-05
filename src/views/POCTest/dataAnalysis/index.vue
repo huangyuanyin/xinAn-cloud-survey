@@ -5,14 +5,17 @@
   </div>
 </template>
  
-<script>
-export default {
-  data() {
-    return {};
-  },
-  methods: {
+<script lang="js">
+import { defineComponent, onMounted, inject } from "vue";
+export default defineComponent({
+  setup() {
+    onMounted(() => {
+      change();
+      changetype();
+    });
+    let echarts = inject("echarts");
     // 基本柱形图
-    change() {
+    const change = () => {
       const chartBox = echarts.init(document.getElementById("main"));
       const option = {
         xAxis: {
@@ -31,11 +34,11 @@ export default {
       window.addEventListener("resize", function () {
         chartBox.resize();
       });
-    },
+    };
     // 折线图
-    changetype() {
+    const changetype = () => {
       // 获取组件实例
-      const machart = this.$echarts.init(document.getElementById("maychar"));
+      const machart = echarts.init(document.getElementById("maychar"));
       // 设置配置项
       const option = {
         xAxis: {
@@ -61,13 +64,12 @@ export default {
       window.addEventListener("resize", function () {
         machart.resize();
       });
-    },
+    };
+    return {
+      changetype,
+    };
   },
-  mounted() {
-    this.change();
-    this.changetype();
-  },
-};
+});
 </script>
  
 <style lang="scss" scoped>
