@@ -1,7 +1,7 @@
 <template>
   <el-aside>
     <el-menu
-      default-active=""
+      :default-active="defaultActiveIndex"
       class="el-menu"
       :collapse="store.isCollapse"
       active-text-color="rgb(85, 85, 85)"
@@ -53,7 +53,7 @@
 </template>
 
 <script lang="ts">
-import { defineComponent, ref } from "vue";
+import { defineComponent, onMounted, ref } from "vue";
 import {
   Document,
   Menu as IconMenu,
@@ -71,8 +71,12 @@ export default defineComponent({
   },
   setup() {
     const store = useAppStore();
+    const defaultActiveIndex = ref("")
+    onMounted(() => {
+      defaultActiveIndex.value = window.location.pathname
+    });
     return {
-      store,
+      store,defaultActiveIndex
     };
   },
 });
@@ -81,14 +85,18 @@ export default defineComponent({
 <style lang="scss" scoped>
 .el-menu {
   height: 100%;
-
   .el-menu-item.is-disabled {
     opacity: 100%;
     cursor: default;
+    border-bottom: 1px solid #ebebeb;
   }
 
   :deep(.el-menu-item-group__title) {
     padding: 0px;
+  }
+
+  .is-active{
+    background-color: #dedede;
   }
 }
 .el-menu:not(.el-menu--collapse) {
@@ -99,5 +107,6 @@ export default defineComponent({
   background-color: rgb(245, 245, 245);
   color: rgb(51, 51, 51);
   width: auto;
+  overflow-x: hidden;
 }
 </style>
