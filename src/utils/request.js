@@ -2,11 +2,13 @@ import axios from "axios";
 import { ElMessage } from 'element-plus'
 // import { useCookies } from '@vueuse/integrations/useCookies'
 import { getToken } from "./auth";
+import baseUrl from '@/config/api'
 
 const service = axios.create({
   // baseURL:"http://ceshi13.dishait.cn/"
   // baseURL:"http://10.20.84.55:8000/",
-  baseURL: "http://10.20.70.89:8082",
+  // baseURL: "http://10.20.70.89:8082", // 登录
+  // baseDatasURL:"http://10.20.86.27:8015", // POC测试
   // baseURL: '/api',
   timeout: 12000,
 })
@@ -16,8 +18,17 @@ service.interceptors.request.use(function (config) {
   // 在发送请求之前做些什么
   // 往header头中自动添加token
   const hastoken = getToken()
-  if (hastoken && (config.url !== '/forum/login/')) {
+  if (hastoken && (config.url !== '/forum/login/' && config.url !== '/datas/datas/')) {
     config.headers["token"] = hastoken
+  }
+  switch (config.urlType) {
+    case 'POC':
+      config.url = baseUrl.base_POC_URL + config.url
+      break;
+  
+    default:
+      config.url = baseUrl.Base_Login_URL + config.url
+      break;
   }
   return config;
 }, function (error) {

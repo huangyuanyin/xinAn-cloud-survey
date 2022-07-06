@@ -11,11 +11,13 @@
  
 <script lang="js">
 import { defineComponent, onMounted, inject,reactive } from "vue";
+import { datas } from '@/api/POC/index.js'
 export default defineComponent({
   setup() {
     onMounted(() => {
       change();
       changetype();
+      getDatas();
     });
     const state = reactive({
       charts: {
@@ -133,9 +135,14 @@ export default defineComponent({
         machart.resize();
       });
     };
+    const getDatas = async () => {
+      const res = await datas()
+      console.log("测试数据...",res)
+    };
     return {
       state,
       changetype,
+      getDatas
     };
   },
 });
