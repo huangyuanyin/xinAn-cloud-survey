@@ -1,81 +1,96 @@
-import { createRouter, createWebHashHistory,createWebHistory } from 'vue-router'
+import {
+  createRouter,
+  createWebHashHistory,
+  createWebHistory,
+} from "vue-router";
 
 import Layout from "@/views/Layout/index.vue"; // 布局组件 不需要懒加载
 
 const routes = [
   {
-    path: '/login',
+    path: "/login",
     name: "Login",
     meta: {
-      title: "登录页面"
+      title: "登录页面",
     },
-    component: () => import("@/views/Login/index.vue")
+    component: () => import("@/views/Login/index.vue"),
   },
   {
-    path: '/',
+    path: "/",
     redirect: "/home",
     component: Layout,
   },
   {
-    path: '/home',
+    path: "/home",
     component: Layout,
     children: [
       {
-        path: '/POCTest',
+        path: "/POCTest",
         name: "POCTest",
         meta: {
-          title: "POC测试"
+          title: "POC测试",
         },
         redirect: "/POCTest/overview", // 该配置是若点击选择一级菜单时，默认选中并跳转到该一级菜单下的第一个二级菜单
         component: () => import("@/views/POCTest/index.vue"),
         children: [
           {
-            path: '/POCTest/overview',
+            path: "/POCTest/overview",
             name: "Overview",
             meta: {
-              title: "概览"
+              title: "概览",
             },
-            component: () => import("@/views/POCTest/overview/index.vue")
+            component: () => import("@/views/POCTest/overview/index.vue"),
           },
           {
-            path: '/POCTest/deviceManagement',
+            path: "/POCTest/deviceManagement",
             name: "DeviceManagement",
             meta: {
-              title: "设备管理"
+              title: "设备管理",
             },
-            component: () => import("@/views/POCTest/deviceManagement/index.vue")
+            component: () =>
+              import("@/views/POCTest/deviceManagement/index.vue"),
           },
           {
-            path: '/POCTest/performanceTestTask',
+            path: "/POCTest/performanceTestTask",
             name: "PerformanceTestTask",
             meta: {
-              title: "性能测试任务"
+              title: "性能测试任务",
             },
-            component: () => import("@/views/POCTest/performanceTestTask/index.vue")
+            component: () =>
+              import("@/views/POCTest/performanceTestTask/index.vue"),
           },
           {
-            path: '/POCTest/taskDetail',
+            path: "/POCTest/taskDetail",
             name: "TaskDetail",
             meta: {
-              title: "性能测试任务"
+              title: "性能测试任务",
             },
-            component: () => import("@/views/POCTest/performanceTestTask/taskDetail.vue")
+            component: () =>
+              import("@/views/POCTest/performanceTestTask/taskDetail.vue"),
           },
           {
-            path: '/POCTest/dataAnalysis',
+            path: "/POCTest/templateReport",
+            name: "TemplateReport",
+            meta: {
+              title: "测试报告",
+            },
+            component: () => import("@/views/POCTest/templateReport/index.vue"),
+          },
+          {
+            path: "/POCTest/dataAnalysis",
             name: "DataAnalysis",
             meta: {
-              title: "数据分析"
+              title: "测试报告",
             },
-            component: () => import("@/views/POCTest/dataAnalysis/index.vue")
+            component: () => import("@/views/POCTest/templateReport/dataAnalysis.vue"),
           },
-        ]
+        ],
       },
       {
-        path: '/test',
+        path: "/test",
         name: "Test",
         meta: {
-          title: "测试"
+          title: "测试",
         },
         redirect: "/test/overview", // 该配置是若点击选择一级菜单时，默认选中并跳转到该一级菜单下的第一个二级菜单
         component: () => import("@/views/test/index.vue"),
@@ -83,27 +98,27 @@ const routes = [
           {
             path: "/test/overview",
             meta: {
-              title: "概览"
+              title: "概览",
             },
             component: () => import("@/views/test/overview.vue"),
-          }
-        ]
-      }
-    ]
+          },
+        ],
+      },
+    ],
   },
   {
-    path: '/:pathMatch(.*)*',
-    name: 'NotFound',
+    path: "/:pathMatch(.*)*",
+    name: "NotFound",
     meta: {
-      title: "404页面"
+      title: "404页面",
     },
-    component: () => import("@/views/exception/404.vue")
+    component: () => import("@/views/exception/404.vue"),
   },
-]
+];
 
 const router = createRouter({
   history: createWebHistory(),
-  routes
-})
+  routes,
+});
 
-export default router
+export default router;

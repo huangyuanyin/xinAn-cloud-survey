@@ -1,24 +1,25 @@
 <template>
   <div class="dataAnalysis-wrap">
-    <el-card class="box-card">
+    <div @click="toBack">返回</div>
+    <el-card class="box-card" style="margin-top: 20px">
       <div id="maychar"></div>
     </el-card>
-    <el-card class="main-card" style="margin-top:20px;">
+    <el-card class="main-card" style="margin-top: 20px">
       <div id="main"></div>
     </el-card>
   </div>
 </template>
- 
+
 <script lang="js">
 import { defineComponent, onMounted, inject,reactive } from "vue";
-import { datas } from '@/api/POC/index.js'
+import { useRouter } from "vue-router";
 export default defineComponent({
   setup() {
     onMounted(() => {
       change();
       changetype();
-      getDatas();
     });
+    const router = useRouter()
     const state = reactive({
       charts: {
 				theme: '',
@@ -27,6 +28,9 @@ export default defineComponent({
 			},
     })
     let echarts = inject("echarts");
+    const toBack = () => {
+      router.go(-1)
+    }
     // 基本柱形图
     const change = () => {
       const chartBox = echarts.init(document.getElementById("main"));
@@ -135,19 +139,16 @@ export default defineComponent({
         machart.resize();
       });
     };
-    const getDatas = async () => {
-      const res = await datas()
-      console.log("测试数据...",res)
-    };
     return {
+      router,
       state,
       changetype,
-      getDatas
+      toBack
     };
   },
 });
 </script>
- 
+
 <style lang="scss" scoped>
 #main {
   min-width: 31.25rem;

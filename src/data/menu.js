@@ -27,9 +27,9 @@ export const cheshiMenuData = [
         isDisabled: false,
         children: [],
       },
-    ]
+    ],
   },
-]
+];
 
 export const POCTestMenuData = [
   {
@@ -38,7 +38,7 @@ export const POCTestMenuData = [
     path: null,
     isDisabled: true,
     type: 1,
-    children: []
+    children: [],
   },
   {
     id: "02",
@@ -69,12 +69,12 @@ export const POCTestMenuData = [
       },
       {
         id: "0303",
-        title: "数据分析",
-        path: "/POCTest/dataAnalysis",
+        title: "测试报告",
+        path: "/POCTest/templateReport",
         isDisabled: false,
         children: [],
       },
-    ]
+    ],
   },
   {
     id: "04",
@@ -83,5 +83,4 @@ export const POCTestMenuData = [
     isDisabled: false,
     children: [],
   },
-]
-
+];

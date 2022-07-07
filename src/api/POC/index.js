@@ -1,9 +1,10 @@
 import request from '@/utils/request.js'
 
-export function datas() {
+export function datas(params) {
     return request({
         url: '/datas/datas/',
         method: 'get',
-        urlType: 'POC'
+        urlType: 'POC',
+        params
     })
 }
