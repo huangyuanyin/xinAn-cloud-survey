@@ -6,22 +6,13 @@
       </el-form-item>
       <el-form-item label="测试时间">
         <el-col :span="11">
-          <el-date-picker
-            v-model="formInline.date1"
-            type="date"
-            placeholder="请选择开始时间..."
-            style="width: 100%"
-          />
+          <el-date-picker v-model="formInline.date1" type="date" placeholder="请选择开始时间..." style="width: 100%" />
         </el-col>
         <el-col :span="2" class="text-center">
           <span class="text-gray-500">-</span>
         </el-col>
         <el-col :span="11">
-          <el-time-picker
-            v-model="formInline.date2"
-            placeholder="请选择结束时间..."
-            style="width: 100%"
-          />
+          <el-time-picker v-model="formInline.date2" placeholder="请选择结束时间..." style="width: 100%" />
         </el-col>
       </el-form-item>
       <el-form-item label="测试结果状态">
@@ -48,49 +39,29 @@
       </el-form-item>
     </el-form>
 
-    <el-table
-      ref="multipleTableRef"
-      :data="tableData"
-      style="width: 100%; margin-top: 10px"
-      @selection-change="handleSelectionChange"
-    >
+    <el-table ref="multipleTableRef" :data="tableData" style="width: 100%; margin-top: 10px"
+      @selection-change="handleSelectionChange">
       <el-table-column type="selection" width="55" align="center" />
-      <el-table-column
-        property="id"
-        label="任务ID"
-        width="120"
-        align="center"
-      />
+      <el-table-column property="id" label="任务ID" width="120" align="center">
+        <template #default="scope">
+          <el-button link type="primary" size="small" @click="toDetail(scope.row.id)">{{ scope.row.id }}</el-button>
+        </template>
+      </el-table-column>
       <!-- <el-table-column property="stamp" label="任务执行标识" width="120" />
     <el-table-column property="resultid" label="测试结果ID" width="120" /> -->
       <el-table-column label="测试时间" width="200" align="center">
         <template #default="scope">{{ scope.row.time }}</template>
       </el-table-column>
-      <el-table-column
-        property="status"
-        label="测试结果状态"
-        width="120"
-        align="center"
-      />
-      <el-table-column
-        property="apv_model"
-        label="设备型号"
-        width="200"
-        align="center"
-      />
-      <el-table-column
-        property="build"
-        label="版本"
-        show-overflow-tooltip
-        align="center"
-      />
-      <el-table-column
-        property="ipversion"
-        label="ipversion"
-        width="120"
-        align="center"
-      />
+      <el-table-column property="status" label="测试结果状态" width="120" align="center" />
+      <el-table-column property="apv_model" label="设备型号" width="200" align="center" />
+      <el-table-column property="build" label="版本" show-overflow-tooltip align="center" />
+      <el-table-column property="ipversion" label="ipversion" width="120" align="center" />
       <el-table-column property="test_case" label="测试用例" align="center" />
+      <el-table-column fixed="right" label="Operations" width="120" align="center">
+        <template #default>
+          <el-button link type="primary" size="small" @click="openReportDialog">生成报告</el-button>
+        </template>
+      </el-table-column>
     </el-table>
     <div style="margin-top: 20px">
       <el-button @click="toDataAnalysis()" type="primary"> 数据分析 </el-button>
@@ -161,6 +132,18 @@ export default defineComponent({
       );
       router.push("/POCTest/dataAnalysis");
     };
+    const openReportDialog = () => {
+
+    }
+    // 报告详情
+    const toDetail = (id) => {
+      router.push({
+        path: "/POCTest/reportDetail",
+        query: {
+          resultid: id
+        }
+      })
+    }
     const getDatas = async (params) => {
       const res = await datas(params);
       if (res.code == 1000) {
@@ -183,6 +166,8 @@ export default defineComponent({
       handleSelectionChange,
       toDataAnalysis,
       getDatas,
+      openReportDialog,
+      toDetail
     };
   },
 });

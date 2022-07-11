@@ -80,9 +80,19 @@ const routes = [
             path: "/POCTest/dataAnalysis",
             name: "DataAnalysis",
             meta: {
-              title: "测试报告",
+              title: "数据分析",
             },
-            component: () => import("@/views/POCTest/templateReport/dataAnalysis.vue"),
+            component: () =>
+              import("@/views/POCTest/templateReport/dataAnalysis.vue"),
+          },
+          {
+            path: "/POCTest/reportDetail",
+            name: "reportDetail",
+            meta: {
+              title: "报告详情",
+            },
+            component: () =>
+              import("@/views/POCTest/templateReport/reportDetail.vue"),
           },
         ],
       },
