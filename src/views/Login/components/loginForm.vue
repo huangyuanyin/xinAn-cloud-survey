@@ -48,7 +48,8 @@ export default defineComponent({
           store
             .Login(formData)
             .then(() => {
-              router.replace('/')
+              // router.replace("/");
+              router.replace("/POCTest/overview")
             })
             .finally(() => {
               loading.value = false;
