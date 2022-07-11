@@ -31,6 +31,7 @@ import { datas } from "@/api/POC/index.js";
 import { useRoute, useRouter } from 'vue-router';
 import { ArrowLeftBold } from "@element-plus/icons-vue";
 import DataTemplateDialog from './components/dataTemplateDialog.vue';
+import { getDataApi } from "../../../utils/getApi.js"
 export default defineComponent({
   components: {
     ArrowLeftBold, DataTemplateDialog
@@ -45,15 +46,13 @@ export default defineComponent({
     const dataX: any = ref([])
     const dialogData = ref([])
     // 获取数据
-    const getDatas = async () => {
-      const params = {
-        resultid: route.query.resultid
-      }
-      const res = await datas(params);
-      if (res.code == 1000) {
-        tableData.value = res.data;
-        handleData(res.data) // 处理数据
-      };
+    const getDatas = () => {
+      getDataApi(route.query.resultid).then(res => {
+        tableData.value = res;
+        handleData(tableData.value)
+      }).then(() => {
+        changetype()
+      })
     };
     // 折线图
     const changetype = () => {
@@ -125,7 +124,6 @@ export default defineComponent({
     }
     onMounted(async () => {
       await getDatas();
-      changetype()
     });
     return {
       dialogData,

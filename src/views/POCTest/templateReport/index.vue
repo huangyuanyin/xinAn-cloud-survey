@@ -58,8 +58,8 @@
       <el-table-column property="ipversion" label="ipversion" width="120" align="center" />
       <el-table-column property="test_case" label="测试用例" align="center" />
       <el-table-column fixed="right" label="Operations" width="120" align="center">
-        <template #default>
-          <el-button link type="primary" size="small" @click="openReportDialog">生成报告</el-button>
+        <template #default="scope">
+          <el-button link type="primary" size="small" @click="openReportDialog(scope.row.id)">生成报告</el-button>
         </template>
       </el-table-column>
     </el-table>
@@ -68,6 +68,7 @@
       <el-button @click="clearSelection()">重新选择</el-button>
     </div>
   </el-card>
+  <DataTemplateDialog :dialogData="dialogData" :isShowDialog="isShowDialog" @closeDialog="closeDialog" />
 </template>
 
 <script lang="ts">
@@ -76,12 +77,19 @@ import { datas } from "@/api/POC/index.js";
 import { filterData } from "../../../utils/util.js";
 import { useRouter } from "vue-router";
 import { ElMessage } from "element-plus";
+import { getDataApi } from "../../../utils/getApi.js"
+import DataTemplateDialog from './components/dataTemplateDialog.vue';
 export default defineComponent({
+  components: {
+    DataTemplateDialog
+  },
   setup() {
     const router = useRouter();
     const multipleTableRef = ref();
     const multipleSelection = ref([]);
     const tableData = ref([]);
+    const dialogData = ref([])
+    const isShowDialog = ref(false)
     const formInline: any = reactive({
       id: "",
       user: "",
@@ -132,8 +140,15 @@ export default defineComponent({
       );
       router.push("/POCTest/dataAnalysis");
     };
-    const openReportDialog = () => {
-
+    // 生成报告
+    const openReportDialog = (id) => {
+      isShowDialog.value = true
+      getDataApi(id).then(res => {
+        dialogData.value = res[0];
+      })
+    }
+    const closeDialog = () => {
+      isShowDialog.value = false
     }
     // 报告详情
     const toDetail = (id) => {
@@ -154,6 +169,8 @@ export default defineComponent({
       getDatas(filterData(formInline));
     });
     return {
+      dialogData,
+      isShowDialog,
       router,
       formInline,
       onQuery,
@@ -166,6 +183,7 @@ export default defineComponent({
       toDataAnalysis,
       getDatas,
       openReportDialog,
+      closeDialog,
       toDetail
     };
   },
