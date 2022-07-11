@@ -22,7 +22,7 @@
     </div>
     <div id="detail"></div>
   </el-card>
-  <DataTemplateDialog :isShowDialog="isShowDialog" @closeDialog="closeDialog" />
+  <DataTemplateDialog :dialogData="dialogData" :isShowDialog="isShowDialog" @closeDialog="closeDialog" />
 </template>
 
 <script lang="ts">
@@ -43,6 +43,7 @@ export default defineComponent({
     const router = useRouter()
     let echarts: any = inject("echarts");
     const dataX: any = ref([])
+    const dialogData = ref([])
     // 获取数据
     const getDatas = async () => {
       const params = {
@@ -52,8 +53,7 @@ export default defineComponent({
       if (res.code == 1000) {
         tableData.value = res.data;
         handleData(res.data) // 处理数据
-      }
-      console.log("测试数据...", tableData.value);
+      };
     };
     // 折线图
     const changetype = () => {
@@ -70,7 +70,7 @@ export default defineComponent({
         tooltip: { trigger: 'axis' },
         xAxis: {
           type: 'category',
-          data: ['unsuccessful', 'tps', 'cps', 'throughput', 'cc', 'response', 'cpu', 'dut_rps', 'dut_cps', 'dut_cc', 'ssl_ae', 'ssl_se']
+          data: ['cc', 'cps', 'cpu', 'dut_cc', 'dut_cps', 'dut_rps', 'response', 'ssl_ae', 'ssl_se', 'throughput', 'tps', 'unsuccessful']
         },
         yAxis: {
           type: 'value',
@@ -116,6 +116,8 @@ export default defineComponent({
     // 生成报告 弹窗
     const openDialog = () => {
       isShowDialog.value = true
+      dialogData.value = tableData.value[0]
+      console.log("测试数据...", dialogData.value)
     }
     // 关闭弹窗
     const closeDialog = (value) => {
@@ -126,6 +128,7 @@ export default defineComponent({
       changetype()
     });
     return {
+      dialogData,
       isShowDialog,
       openDialog,
       closeDialog,
