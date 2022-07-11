@@ -7,35 +7,10 @@
         </el-icon>
         <span>返回</span>
       </div>
-      <div class="right">
-        <el-button type="primary" link @click="showDialog">生成模板</el-button>
-      </div>
     </el-card>
     <el-card class="box-card" style="margin-top: 20px">
       <div id="maychar"></div>
     </el-card>
-
-    <el-dialog v-model="isShowDialog" title="模板参数">
-      <el-form :model="form">
-        <el-form-item label="Promotion name" :label-width="formLabelWidth">
-          <el-input v-model="form.name" autocomplete="off" />
-        </el-form-item>
-        <el-form-item label="Zones" :label-width="formLabelWidth">
-          <el-select v-model="form.region" placeholder="Please select a zone">
-            <el-option label="Zone No.1" value="shanghai" />
-            <el-option label="Zone No.2" value="beijing" />
-          </el-select>
-        </el-form-item>
-      </el-form>
-      <template #footer>
-        <span class="dialog-footer">
-          <el-button @click="isShowDialog = false">取消</el-button>
-          <el-button type="primary" @click="isShowDialog = false"
-            >生成模板</el-button
-          >
-        </span>
-      </template>
-    </el-dialog>
   </div>
 </template>
 
@@ -43,18 +18,14 @@
 import { defineComponent, onMounted, inject, reactive, ref } from "vue";
 import { useRouter } from "vue-router";
 import { ArrowLeftBold } from "@element-plus/icons-vue";
-import DataTemplate from "./components/dataTemplate.vue";
 export default defineComponent({
   components: {
     ArrowLeftBold,
-    DataTemplate
   },
   setup() {
     onMounted(() => {
       dataList.value = JSON.parse(sessionStorage.getItem("dataList"))
       handleData(dataList.value)
-      console.log("dataList", dataList.value)
-      // change();
       changetype();
     });
     const router = useRouter()
@@ -202,11 +173,8 @@ export default defineComponent({
         machart.resize();
       });
     };
-    const showDialog = () => {
-      isShowDialog.value = true
-    }
     return {
-      isShowDialog, showDialog, form, formLabelWidth,
+      isShowDialog, form, formLabelWidth,
       ArrowLeftBold,
       dataList,
       dataID,

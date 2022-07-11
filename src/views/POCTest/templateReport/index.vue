@@ -149,7 +149,6 @@ export default defineComponent({
       if (res.code == 1000) {
         tableData.value = res.data;
       }
-      console.log("测试数据...", tableData.value);
     };
     onMounted(() => {
       getDatas(filterData(formInline));

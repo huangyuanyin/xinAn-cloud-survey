@@ -11,7 +11,7 @@
     <template #header>
       <div class="card-header">
         <span>报告详情</span>
-        <el-button class="button" link type="primary">生成报告</el-button>
+        <el-button class="button" link type="primary" @click="openDialog">生成报告</el-button>
       </div>
     </template>
     <div class="card-detail">
@@ -22,6 +22,7 @@
     </div>
     <div id="detail"></div>
   </el-card>
+  <DataTemplateDialog :isShowDialog="isShowDialog" @closeDialog="closeDialog" />
 </template>
 
 <script lang="ts">
@@ -29,11 +30,13 @@ import { defineComponent, onMounted, ref, reactive, inject, nextTick } from 'vue
 import { datas } from "@/api/POC/index.js";
 import { useRoute, useRouter } from 'vue-router';
 import { ArrowLeftBold } from "@element-plus/icons-vue";
+import DataTemplateDialog from './components/dataTemplateDialog.vue';
 export default defineComponent({
   components: {
-    ArrowLeftBold,
+    ArrowLeftBold, DataTemplateDialog
   },
   setup() {
+    const isShowDialog = ref(false)
     const tableData = ref({})
     const itemList: any = ref([])
     const route = useRoute();
@@ -110,11 +113,22 @@ export default defineComponent({
     const toBack = () => {
       router.go(-1)
     }
+    // 生成报告 弹窗
+    const openDialog = () => {
+      isShowDialog.value = true
+    }
+    // 关闭弹窗
+    const closeDialog = (value) => {
+      isShowDialog.value = value
+    }
     onMounted(async () => {
       await getDatas();
       changetype()
     });
     return {
+      isShowDialog,
+      openDialog,
+      closeDialog,
       dataX,
       changetype,
       echarts,
