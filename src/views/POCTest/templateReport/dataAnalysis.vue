@@ -98,8 +98,13 @@ export default defineComponent({
           x: 'left',
           textStyle: { fontSize: '15', color: state.charts.color },
         },
-        grid: { top: 70, right: 20, bottom: 30, left: 90 },
-        tooltip: { trigger: 'axis' },
+        grid: { top: 70, right: 20, bottom: 30, left: 90, containLabel: true },
+        tooltip: {
+          trigger: 'axis',
+          axisPointer: {
+            type: 'shadow'
+          }
+        },
         xAxis: {
           data: dataQuery.value,
         },
@@ -122,11 +127,24 @@ export default defineComponent({
             data: Object.values(dataAfter.value[0]).map(Number),
             lineStyle: { color: '#fe9a8b' },
             itemStyle: { color: '#fe9a8b', borderColor: '#fe9a8b' },
+            emphasis: {
+              focus: 'series' // 聚焦当前高亮的数据所在的系列的所有图形。
+            },
             areaStyle: {
               color: new echarts.graphic.LinearGradient(0, 0, 0, 1, [
                 { offset: 0, color: '#fe9a8bb3' },
                 { offset: 1, color: '#fe9a8b03' },
               ]),
+            },
+            label: {
+              normal: {
+                show: true,
+                position: "top",
+                textStyle: {
+                  color: "#AAAAAA",
+                  fontSize: 14
+                }
+              }
             },
           },
           {
@@ -138,11 +156,24 @@ export default defineComponent({
             data: Object.values(dataAfter.value[1]).map(Number),
             lineStyle: { color: '#9E87FF' },
             itemStyle: { color: '#9E87FF', borderColor: '#9E87FF' },
+            emphasis: {
+              focus: 'series' // 聚焦当前高亮的数据所在的系列的所有图形。
+            },
             areaStyle: {
               color: new echarts.graphic.LinearGradient(0, 0, 0, 1, [
                 { offset: 0, color: '#9E87FFb3' },
                 { offset: 1, color: '#9E87FF03' },
               ]),
+            },
+            label: {
+              normal: {
+                show: true,
+                position: "top",
+                textStyle: {
+                  color: "#660000",
+                  fontSize: 14
+                }
+              }
             },
             // emphasis: {
             //   itemStyle: {
@@ -194,14 +225,14 @@ export default defineComponent({
 <style lang="scss" scoped>
 #main {
   min-width: 31.25rem;
-  min-height: 31.25rem;
+  min-height: 600px;
   // max-height: 500px;
 }
 
 #maychar {
-  max-height: 500px;
+  max-height: 600px;
   // max-height: 400px;
-  height: 500px;
+  height: 600px;
 }
 
 .top {

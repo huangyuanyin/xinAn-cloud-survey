@@ -60,52 +60,116 @@ export default defineComponent({
       const machart = echarts.init(document.getElementById("detail"));
       // 设置配置项
       const option = {
-        title: {
-          text: '数据详情',
-          x: 'left',
-          textStyle: { fontSize: '15', color: '#999999' },
-        },
-        grid: { top: 70, right: 20, bottom: 30, left: 90, containLabel: true },
+        backgroundColor: "rgba(5,39,58,1)", //背景色
         tooltip: {
-          trigger: 'axis',
-          axisPointer: {
-            type: 'shadow'
-          }
+          trigger: "axis",
+          axisPointer: { // 坐标轴指示器，坐标轴触发有效
+            type: 'shadow' // 默认为直线，可选为：'line' | 'shadow'
+          },
+        },
+        grid: {
+          left: "4%",
+          right: "4%",
+          bottom: "6%",
+          top: "15%",
+          containLabel: true
         },
         xAxis: {
-          type: 'category',
           data: ['cc', 'cps', 'cpu', 'dut_cc', 'dut_cps', 'dut_rps', 'response', 'ssl_ae', 'ssl_se', 'throughput', 'tps', 'unsuccessful'],
+          triggerEvent: true,
           axisTick: {
-            alignWithLabel: true
+            show: false
+          },
+          axisLine: {
+            show: false
+          },
+          axisLabel: {
+            show: true,
+            rotate: 0,
+            interval: 0,
+            textStyle: {
+              padding: [14, 0, 0, 0],
+              fontSize: 14,
+              color: "rgba(255,255,255,1)"
+            }
           }
         },
         yAxis: {
-          type: 'log',
+          type: "log",
           min: 1,
-          // type: 'value',
-          splitLine: { show: true, lineStyle: { type: 'dashed', color: '#f5f5f5' } },
+          // name: "单位：个数",
+          triggerEvent: true,
+          nameTextStyle: {
+            color: "rgba(255,255,255,1)",
+            fontSize: 16,
+            padding: [0, 0, 10, -20]
+          },
+          splitLine: {
+            show: true,
+            lineStyle: {
+              color: 'rgba(255,255,255,.1)'
+            }
+          },
+          axisTick: {
+            show: false
+          },
+          axisLine: {
+            show: true,
+            lineStyle: {
+              color: 'rgba(255,255,255,.1)'
+            }
+          },
+          axisLabel: {
+            show: true,
+            textStyle: {
+              color: "rgb(148,159,167)",
+              fontSize: 16
+            }
+          }
         },
+        // color: ["#e54035"],
         series: [
           {
-            data: dataX.value,
-            type: 'bar',
-            barWidth: '60%',
-            // smooth: true,
-            areaStyle: {
-              color: new echarts.graphic.LinearGradient(0, 0, 0, 1, [
-                { offset: 0, color: '#fe9a8bb3' },
-                { offset: 1, color: '#fe9a8b03' },
-              ]),
+            name: "值",
+            barMinHeight: 10,
+            type: "pictorialBar",
+            barCategoryGap: "60%",
+            // symbol: 'path://M0,10 L10,10 L5,0 L0,10 z',
+            symbol: "path://M0,10 L10,10 C5.5,10 5.5,5 5,0 C4.5,5 4.5,10 0,10 z",
+            itemStyle: {
+              normal: {
+                //barBorderRadius: 5,
+                //渐变色
+                color: new echarts.graphic.LinearGradient(0, 0, 0, 1, [{
+                  offset: 0,
+                  color: "#01EAED"
+                },
+                {
+                  offset: 0.5,
+                  color: "#02C4DD"
+                },
+                {
+                  offset: 1,
+                  color: "#029ED9"
+                }
+                ])
+              }
             },
-            // 实现数字展示在柱状图
             label: {
-              show: true,
-              position: 'top',
-              color: '#AAAAAA'
+              normal: {
+                show: true,
+                position: "top",
+                textStyle: {
+                  color: "#fff",
+                  fontSize: 20
+                }
+              }
             },
-          }
+            data: dataX.value,
+            z: 10
+          },
         ]
-      };
+      }
       // 复制
       machart.setOption(option);
       // 根据页面大小自动响应图表大小
@@ -203,6 +267,7 @@ export default defineComponent({
   max-height: 500px;
   height: 500px;
   margin-top: 30px;
+  margin-bottom: 15px;
 }
 
 .top {
