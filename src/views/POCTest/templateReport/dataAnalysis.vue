@@ -105,7 +105,8 @@ export default defineComponent({
         },
         yAxis: [
           {
-            type: 'value',
+            type: 'log',
+            min: 1,
             // name: '价格',
             splitLine: { show: true, lineStyle: { type: 'dashed', color: '#f5f5f5' } },
           },
@@ -114,7 +115,7 @@ export default defineComponent({
         series: [
           {
             name: dataID.value[0],
-            type: 'line',
+            type: 'bar',
             symbolSize: 6,
             symbol: 'circle',
             smooth: true,
@@ -130,7 +131,7 @@ export default defineComponent({
           },
           {
             name: dataID.value[1],
-            type: 'line',
+            type: 'bar',
             symbolSize: 6,
             symbol: 'circle',
             smooth: true,
@@ -143,26 +144,26 @@ export default defineComponent({
                 { offset: 1, color: '#9E87FF03' },
               ]),
             },
-            emphasis: {
-              itemStyle: {
-                color: {
-                  type: 'radial',
-                  x: 0.5,
-                  y: 0.5,
-                  r: 0.5,
-                  colorStops: [
-                    { offset: 0, color: '#9E87FF' },
-                    { offset: 0.4, color: '#9E87FF' },
-                    { offset: 0.5, color: '#fff' },
-                    { offset: 0.7, color: '#fff' },
-                    { offset: 0.8, color: '#fff' },
-                    { offset: 1, color: '#fff' },
-                  ],
-                },
-                borderColor: '#9E87FF',
-                borderWidth: 2,
-              },
-            },
+            // emphasis: {
+            //   itemStyle: {
+            //     color: {
+            //       type: 'radial',
+            //       x: 0.5,
+            //       y: 0.5,
+            //       r: 0.5,
+            //       colorStops: [
+            //         { offset: 0, color: '#9E87FF' },
+            //         { offset: 0.4, color: '#9E87FF' },
+            //         { offset: 0.5, color: '#fff' },
+            //         { offset: 0.7, color: '#fff' },
+            //         { offset: 0.8, color: '#fff' },
+            //         { offset: 1, color: '#fff' },
+            //       ],
+            //     },
+            //     borderColor: '#9E87FF',
+            //     borderWidth: 2,
+            //   },
+            // },
           },
         ],
       };

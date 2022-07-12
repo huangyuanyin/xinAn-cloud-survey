@@ -65,26 +65,43 @@ export default defineComponent({
           x: 'left',
           textStyle: { fontSize: '15', color: '#999999' },
         },
-        grid: { top: 70, right: 20, bottom: 30, left: 90 },
-        tooltip: { trigger: 'axis' },
+        grid: { top: 70, right: 20, bottom: 30, left: 90, containLabel: true },
+        tooltip: {
+          trigger: 'axis',
+          axisPointer: {
+            type: 'shadow'
+          }
+        },
         xAxis: {
           type: 'category',
-          data: ['cc', 'cps', 'cpu', 'dut_cc', 'dut_cps', 'dut_rps', 'response', 'ssl_ae', 'ssl_se', 'throughput', 'tps', 'unsuccessful']
+          data: ['cc', 'cps', 'cpu', 'dut_cc', 'dut_cps', 'dut_rps', 'response', 'ssl_ae', 'ssl_se', 'throughput', 'tps', 'unsuccessful'],
+          axisTick: {
+            alignWithLabel: true
+          }
         },
         yAxis: {
-          type: 'value',
+          type: 'log',
+          min: 1,
+          // type: 'value',
           splitLine: { show: true, lineStyle: { type: 'dashed', color: '#f5f5f5' } },
         },
         series: [
           {
             data: dataX.value,
-            type: 'line',
-            smooth: true,
+            type: 'bar',
+            barWidth: '60%',
+            // smooth: true,
             areaStyle: {
               color: new echarts.graphic.LinearGradient(0, 0, 0, 1, [
                 { offset: 0, color: '#fe9a8bb3' },
                 { offset: 1, color: '#fe9a8b03' },
               ]),
+            },
+            // 实现数字展示在柱状图
+            label: {
+              show: true,
+              position: 'top',
+              color: '#AAAAAA'
             },
           }
         ]
