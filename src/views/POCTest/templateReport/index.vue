@@ -40,7 +40,7 @@
     </el-form>
 
     <el-table ref="multipleTableRef" :data="tableData" style="width: 100%; margin-top: 10px"
-      @selection-change="handleSelectionChange">
+      @selection-change="handleSelectionChange" v-loading="loading">
       <el-table-column type="selection" width="55" align="center" />
       <el-table-column property="id" label="任务ID" width="120" align="center">
         <template #default="scope">
@@ -90,6 +90,7 @@ export default defineComponent({
     const tableData = ref([]);
     const dialogData = ref([])
     const isShowDialog = ref(false)
+    const loading = ref(false)
     const formInline: any = reactive({
       id: "",
       user: "",
@@ -160,15 +161,24 @@ export default defineComponent({
       })
     }
     const getDatas = async (params) => {
+      loading.value = true
       const res = await datas(params);
       if (res.code == 1000) {
+        setTimeout(() => {
+          loading.value = false
+        }, 1000);
         tableData.value = res.data;
+      } else {
+        setTimeout(() => {
+          loading.value = false
+        }, 1000);
       }
     };
     onMounted(() => {
       getDatas(filterData(formInline));
     });
     return {
+      loading,
       dialogData,
       isShowDialog,
       router,
