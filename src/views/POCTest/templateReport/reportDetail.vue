@@ -19,6 +19,19 @@
         <span>{{ item.label }}</span>
         <span class="right">{{ item.value }}</span>
       </div>
+      <el-table :data="tableData" border stripe style="width: 100%;margin-top: 30px;">
+        <el-table-column prop="cc" label="cc" align="center" />
+        <el-table-column prop="cps" label="cps" align="center" />
+        <el-table-column prop="cpu" label="cpu" align="center" />
+        <el-table-column prop="dut_cc" label="dut_cc" align="center" />
+        <el-table-column prop="dut_rps" label="dut_rps" align="center" />
+        <el-table-column prop="response" label="response" align="center" />
+        <el-table-column prop="ssl_ae" label="ssl_ae" align="center" />
+        <el-table-column prop="ssl_se" label="ssl_se" align="center" />
+        <el-table-column prop="throughput" label="throughput" align="center" />
+        <el-table-column prop="tps" label="tps" align="center" />
+        <el-table-column prop="unsuccessful" label="unsuccessful" align="center" />
+      </el-table>
     </div>
     <div id="detail"></div>
   </el-card>
@@ -38,7 +51,7 @@ export default defineComponent({
   },
   setup() {
     const isShowDialog = ref(false)
-    const tableData = ref({})
+    const tableData = ref([]) // 详情数据
     const itemList: any = ref([])
     const route = useRoute();
     const router = useRouter()

@@ -166,12 +166,12 @@ export default defineComponent({
       if (res.code == 1000) {
         setTimeout(() => {
           loading.value = false
-        }, 1000);
+        }, 500);
         tableData.value = res.data;
       } else {
         setTimeout(() => {
           loading.value = false
-        }, 1000);
+        }, 500);
       }
     };
     onMounted(() => {

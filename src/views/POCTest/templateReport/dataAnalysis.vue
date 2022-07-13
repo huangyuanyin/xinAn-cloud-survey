@@ -9,13 +9,29 @@
       </div>
     </el-card>
     <el-card class="chart-card" style="margin-top: 20px">
-      <div class="title">数据分析</div>
+      <div class="title">数据分析(表格)</div>
+      <el-table :data="dataList" border stripe style="width: 100%;margin-top: 20px;">
+        <el-table-column prop="id" align="center" />
+        <el-table-column prop="cc" label="cc" align="center" />
+        <el-table-column prop="cps" label="cps" align="center" />
+        <el-table-column prop="cpu" label="cpu" align="center" />
+        <el-table-column prop="dut_cc" label="dut_cc" align="center" />
+        <el-table-column prop="dut_rps" label="dut_rps" align="center" />
+        <el-table-column prop="response" label="response" align="center" />
+        <el-table-column prop="ssl_ae" label="ssl_ae" align="center" />
+        <el-table-column prop="ssl_se" label="ssl_se" align="center" />
+        <el-table-column prop="throughput" label="throughput" align="center" />
+        <el-table-column prop="tps" label="tps" align="center" />
+        <el-table-column prop="unsuccessful" label="unsuccessful" align="center" />
+      </el-table>
+    </el-card>
+    <el-card class="chart-card" style="margin-top: 20px">
+      <div class="title">数据分析(图表)</div>
       <div class="content">
         <template v-for="(item, index) in chartList" :key="''+ index">
           <div :id="item.id" style="width: 25%;height:400px;"></div>
         </template>
       </div>
-
     </el-card>
   </div>
 </template>
