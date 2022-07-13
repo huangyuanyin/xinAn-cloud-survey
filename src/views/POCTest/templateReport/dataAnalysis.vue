@@ -131,7 +131,7 @@ export default defineComponent({
           },
           series: [
             {
-              type: dataList.value.length < 5 ? 'bar' : 'line',
+              type: dataList.value.length < 6 ? 'bar' : 'line',
               name: item.title,
               data: item.data,
               barWidth: 15, // 柱子的宽度
@@ -141,7 +141,7 @@ export default defineComponent({
               },
               label: { // 柱子上方的数字展示
                 normal: {
-                  show: dataList.value.length < 5 ? true : false,
+                  show: dataList.value.length < 6 ? true : false,
                   position: 'top',
                   color: "black"
                 }
