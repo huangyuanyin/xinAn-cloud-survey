@@ -127,9 +127,9 @@ export default defineComponent({
     };
     // 数据分析
     const toDataAnalysis = () => {
-      if (multipleSelection.value.length !== 2) {
+      if (multipleSelection.value.length < 2) {
         ElMessage({
-          message: "请选择两组数据进入数据对比....",
+          message: "请至少选择两组数据进入数据对比....",
           type: "warning",
         });
         return;
