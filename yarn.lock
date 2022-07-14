@@ -941,6 +941,14 @@
     "jsbn" "~0.1.0"
     "safer-buffer" "^2.1.0"
 
+"echarts@^5.3.3":
+  "integrity" "sha512-BRw2serInRwO5SIwRviZ6Xgm5Lb7irgz+sLiFMmy/HOaf4SQ+7oYqxKzRHAKp4xHQ05AuHw1xvoQWJjDQq/FGw=="
+  "resolved" "https://registry.npmmirror.com/echarts/-/echarts-5.3.3.tgz"
+  "version" "5.3.3"
+  dependencies:
+    "tslib" "2.3.0"
+    "zrender" "5.3.2"
+
 "electron-to-chromium@^1.4.164":
   "integrity" "sha512-lPHuHXBwpkr4RcfaZBKm6TKOWG/1N9mVggUpP4fY3l1JIUU2x4fkM8928smYdZ5lF+6KCTAxo1aK9JmqT+X71Q=="
   "resolved" "https://registry.npmmirror.com/electron-to-chromium/-/electron-to-chromium-1.4.167.tgz"
@@ -2598,6 +2606,11 @@
   dependencies:
     "glob" "^7.1.2"
 
+"tslib@2.3.0":
+  "integrity" "sha512-N82ooyxVNm6h1riLCoyS9e3fuJ3AMG2zIZs2Gd1ATcSFjSA23Q0fzjjZeh0jbJvWVDZ0cJT8yaNNaaXHzueNjg=="
+  "resolved" "https://registry.npmmirror.com/tslib/-/tslib-2.3.0.tgz"
+  "version" "2.3.0"
+
 "tunnel-agent@^0.6.0":
   "integrity" "sha512-McnNiV1l8RYeY8tBgEpuodCC1mLUdbSN+CYBL7kJsJNInOP8UjDDEwdk6Mw60vdLLrr5NHKZhMAOSrR2NZuQ+w=="
   "resolved" "https://registry.npmjs.org/tunnel-agent/-/tunnel-agent-0.6.0.tgz"
@@ -2863,6 +2876,21 @@
   "resolved" "https://registry.npmjs.org/wrappy/-/wrappy-1.0.2.tgz"
   "version" "1.0.2"
 
+"xterm-addon-attach@^0.6.0":
+  "integrity" "sha512-Mo8r3HTjI/EZfczVCwRU6jh438B4WLXxdFO86OB7bx0jGhwh2GdF4ifx/rP+OB+Cb2vmLhhVIZ00/7x3YSP3dg=="
+  "resolved" "https://registry.npmmirror.com/xterm-addon-attach/-/xterm-addon-attach-0.6.0.tgz"
+  "version" "0.6.0"
+
+"xterm-addon-fit@^0.5.0":
+  "integrity" "sha512-DsS9fqhXHacEmsPxBJZvfj2la30Iz9xk+UKjhQgnYNkrUIN5CYLbw7WEfz117c7+S86S/tpHPfvNxJsF5/G8wQ=="
+  "resolved" "https://registry.npmmirror.com/xterm-addon-fit/-/xterm-addon-fit-0.5.0.tgz"
+  "version" "0.5.0"
+
+"xterm@^4.0.0", "xterm@^4.19.0":
+  "integrity" "sha512-c3Cp4eOVsYY5Q839dR5IejghRPpxciGmLWWaP9g+ppfMeBChMeLa1DCA+pmX/jyDZ+zxFOmlJL/82qVdayVoGQ=="
+  "resolved" "https://registry.npmmirror.com/xterm/-/xterm-4.19.0.tgz"
+  "version" "4.19.0"
+
 "y18n@^5.0.5":
   "integrity" "sha512-0pfFzegeDWJHJIAmTLRP2DwHjdF5s7jo9tuztdQxAhINCdvS+3nGINqPd00AphqJR/0LhANUS6/+7SCb98YOfA=="
   "resolved" "https://registry.npmjs.org/y18n/-/y18n-5.0.8.tgz"
@@ -2895,3 +2923,10 @@
     "string-width" "^4.2.3"
     "y18n" "^5.0.5"
     "yargs-parser" "^21.0.0"
+
+"zrender@5.3.2":
+  "integrity" "sha512-8IiYdfwHj2rx0UeIGZGGU4WEVSDEdeVCaIg/fomejg1Xu6OifAL1GVzIPHg2D+MyUkbNgPWji90t0a8IDk+39w=="
+  "resolved" "https://registry.npmmirror.com/zrender/-/zrender-5.3.2.tgz"
+  "version" "5.3.2"
+  dependencies:
+    "tslib" "2.3.0"

@@ -13,7 +13,7 @@
           <el-table-column fixed="right" label="Operations" align="center">
             <template #default>
               <el-button link type="primary" size="small" @click="handleDedit">编辑</el-button>
-              <el-button link type="primary" size="small" @click="toConsole">终端</el-button>
+              <el-button link type="primary" size="small" @click="termailDialogVisible = true">终端</el-button>
               <el-button link type="primary" size="small" @click="handleDelete">删除</el-button>
             </template>
           </el-table-column>
@@ -55,6 +55,11 @@
         </span>
       </template>
     </el-dialog>
+
+    <!-- 终端 -->
+    <el-dialog custom-class="termailDialog" v-model="termailDialogVisible" draggable :close-on-click-modal="false">
+      <Termmail />
+    </el-dialog>
   </div>
 </template>
 
@@ -64,10 +69,15 @@ import { ref, reactive } from "vue";
 import type { TabsPaneContext } from "element-plus";
 import type { FormInstance, FormRules } from "element-plus";
 import { instrumentManagementData } from "./data.js"
+import Termmail from '../../../components/Termail.vue'
 export default defineComponent({
+  components: {
+    Termmail
+  },
   setup() {
     const activeName = ref("instrumentManagement");
     const dialogVisible = ref(false);
+    const termailDialogVisible = ref(false);
     const tableData = ref(instrumentManagementData)
     const addDeviceForm = reactive({
       ip: "",
@@ -120,6 +130,7 @@ export default defineComponent({
     }
     const toConsole = () => { }
     return {
+      termailDialogVisible,
       tableData,
       activeName,
       dialogVisible,
@@ -142,6 +153,24 @@ export default defineComponent({
 .addDevice-form {
   .el-input {
     width: 214px;
+  }
+}
+</style>
+
+<style lang="scss">
+.termailDialog {
+  .el-dialog__body {
+    padding: 0 !important;
+    width: 100%;
+  }
+
+  .el-dialog__headerbtn {
+    height: 40px;
+    line-height: 40px;
+  }
+
+  .el-dialog__header {
+    padding-bottom: 20px;
   }
 }
 </style>
