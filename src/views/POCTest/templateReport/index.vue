@@ -57,9 +57,13 @@
       <el-table-column property="build" label="版本" show-overflow-tooltip align="center" />
       <el-table-column property="ipversion" label="ipversion" width="120" align="center" />
       <el-table-column property="test_case" label="测试用例" align="center" />
-      <el-table-column fixed="right" label="Operations" width="120" align="center">
+      <el-table-column fixed="right" label="Operations" align="center">
         <template #default="scope">
           <el-button link type="primary" size="small" @click="openReportDialog(scope.row.id)">生成报告</el-button>
+          <el-upload :action="upload.url" :on-success="onSuccess" :on-error="onError" :headers="upload.header"
+            :beforeUpload="beforeUpload">
+            <el-button type="primary" link size="small">上传文件</el-button>
+          </el-upload>
         </template>
       </el-table-column>
     </el-table>
@@ -72,7 +76,7 @@
 </template>
 
 <script lang="ts">
-import { defineComponent, onMounted, ref, reactive } from "vue";
+import { defineComponent, onMounted, ref, reactive, toRef, toRefs } from "vue";
 import { datas } from "@/api/POC/index.js";
 import { filterData } from "../../../utils/util.js";
 import { useRouter } from "vue-router";
@@ -84,6 +88,15 @@ export default defineComponent({
     DataTemplateDialog
   },
   setup() {
+    const state = reactive({
+      upload: {
+        url: ``,
+        header: {
+          token: ""
+        },
+        resData: {}
+      },
+    })
     const router = useRouter();
     const multipleTableRef = ref();
     const multipleSelection = ref([]);
@@ -160,6 +173,37 @@ export default defineComponent({
         }
       })
     }
+
+    const onSuccess = () => {
+
+    }
+
+    const onError = () => {
+      ElMessage({
+        message: "上传失败!",
+        type: "error",
+      });
+    }
+    const beforeUpload = (file) => {
+      const sizeLimit = file.size / 1024 / 1024 > 10
+      if (sizeLimit) {
+        ElMessage({
+          message: "上传文件大小不能超过 10MB!",
+          type: "warning",
+        });
+      }
+      const fileFamart = file.name.split('.')[file.name.split('.').length - 1];
+      console.log("上传...", fileFamart);
+      if (fileFamart !== 'zip' || fileFamart !== 'rar') {
+        ElMessage({
+          message: "必须上传zip/rar格式的文件!",
+          type: "warning",
+        });
+      }
+      return !sizeLimit && (fileFamart === 'zip' || fileFamart === 'rar')
+    }
+
+    // 列表数据
     const getDatas = async (params) => {
       loading.value = true
       const res = await datas(params);
@@ -178,7 +222,7 @@ export default defineComponent({
       getDatas(filterData(formInline));
     });
     return {
-      loading,
+      ...toRefs(state),
       dialogData,
       isShowDialog,
       router,
@@ -194,7 +238,11 @@ export default defineComponent({
       getDatas,
       openReportDialog,
       closeDialog,
-      toDetail
+      toDetail,
+      onSuccess,
+      onError,
+      beforeUpload,
+      loading
     };
   },
 });
@@ -204,5 +252,9 @@ export default defineComponent({
 .text-center {
   display: flex;
   justify-content: center;
+}
+
+:deep(.el-upload-list) {
+  margin: 0px;
 }
 </style>
