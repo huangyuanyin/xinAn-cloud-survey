@@ -67,9 +67,14 @@
         </template>
       </el-table-column>
     </el-table>
-    <div style="margin-top: 20px">
-      <el-button @click="toDataAnalysis()" type="primary"> 数据分析 </el-button>
-      <el-button @click="clearSelection()">重新选择</el-button>
+    <div class="bottomWrap">
+      <div class="buttonGroup">
+        <el-button @click="toDataAnalysis()" type="primary"> 数据分析 </el-button>
+        <el-button @click="clearSelection()">重新选择</el-button>
+      </div>
+      <el-pagination v-model:currentPage="currentPage" v-model:page-size="pageSize" :page-sizes="[10, 20, 30, 40]"
+        :small="false" :background="true" layout="total, sizes, prev, pager, next, jumper" :total="total"
+        @size-change="handleSizeChange" @current-change="handleCurrentChange" />
     </div>
   </el-card>
   <DataTemplateDialog :dialogData="dialogData" :isShowDialog="isShowDialog" @closeDialog="closeDialog" />
@@ -104,6 +109,9 @@ export default defineComponent({
     const dialogData = ref([])
     const isShowDialog = ref(false)
     const loading = ref(false)
+    const currentPage = ref(1)
+    const pageSize = ref(10)
+    const total = ref(0)
     const formInline: any = reactive({
       id: "",
       user: "",
@@ -203,6 +211,14 @@ export default defineComponent({
       return !sizeLimit && (fileFamart === 'zip' || fileFamart === 'rar')
     }
 
+    const handleSizeChange = (val: number) => {
+      console.log(`${val} items per page`)
+    }
+
+    const handleCurrentChange = (val: number) => {
+      console.log(`current page: ${val}`)
+    }
+
     // 列表数据
     const getDatas = async (params) => {
       loading.value = true
@@ -212,6 +228,7 @@ export default defineComponent({
           loading.value = false
         }, 500);
         tableData.value = res.data;
+        total.value = res.total
       } else {
         setTimeout(() => {
           loading.value = false
@@ -223,6 +240,9 @@ export default defineComponent({
     });
     return {
       ...toRefs(state),
+      total,
+      currentPage,
+      pageSize,
       dialogData,
       isShowDialog,
       router,
@@ -242,7 +262,9 @@ export default defineComponent({
       onSuccess,
       onError,
       beforeUpload,
-      loading
+      loading,
+      handleSizeChange,
+      handleCurrentChange
     };
   },
 });
@@ -256,5 +278,23 @@ export default defineComponent({
 
 :deep(.el-upload-list) {
   margin: 0px;
+}
+
+.bottomWrap {
+  display: flex;
+  margin-top: 20px;
+  justify-content: space-between;
+}
+
+:deep(.cell) {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  .el-upload {
+    height: 24px;
+    line-height: 24px;
+    margin-left: 10px;
+  }
 }
 </style>
