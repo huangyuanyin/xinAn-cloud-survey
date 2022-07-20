@@ -13,7 +13,8 @@
           <el-table-column fixed="right" label="Operations" align="center">
             <template #default>
               <el-button link type="primary" size="small" @click="handleDedit">编辑</el-button>
-              <el-button link type="primary" size="small" @click="termailDialogVisible = true">终端</el-button>
+              <!-- <el-button link type="primary" size="small" @click="termailDialogVisible = true">终端</el-button> -->
+              <el-button link type="primary" size="small" @click="toConsole">终端</el-button>
               <el-button link type="primary" size="small" @click="handleDelete">删除</el-button>
             </template>
           </el-table-column>
@@ -75,6 +76,12 @@ export default defineComponent({
     Termmail
   },
   setup() {
+    // const terminal = ref({
+    //   // pid: 1,
+    //   // name: 'terminal',
+    //   // cols: 400,
+    //   // rows: 400
+    // })
     const activeName = ref("instrumentManagement");
     const dialogVisible = ref(false);
     const termailDialogVisible = ref(false);
@@ -128,8 +135,11 @@ export default defineComponent({
     const handleDelete = () => {
       console.log('删除')
     }
-    const toConsole = () => { }
+    const toConsole = () => {
+      window.open("/POCTest/Termail", '_blank')
+    }
     return {
+      // terminal,
       termailDialogVisible,
       tableData,
       activeName,
@@ -158,19 +168,20 @@ export default defineComponent({
 </style>
 
 <style lang="scss">
-.termailDialog {
-  .el-dialog__body {
-    padding: 0 !important;
-    width: 100%;
-  }
+// .termailDialog {
+//   .el-dialog__body {
+//     padding: 0 !important;
+//     width: 100%;
+//   }
 
-  .el-dialog__headerbtn {
-    height: 40px;
-    line-height: 40px;
-  }
+//   .el-dialog__headerbtn {
+//     height: 40px;
+//     line-height: 40px;
+//   }
 
-  .el-dialog__header {
-    padding-bottom: 20px;
-  }
-}
+//   .el-dialog__header {
+//     padding-bottom: 20px;
+//   }
+// }
+// 
 </style>
