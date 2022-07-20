@@ -1,8 +1,5 @@
 <template>
-  <div>
-    <div class="console" id="terminal"></div>
-  </div>
-
+  <div class="console" id="terminal"></div>
 </template>
 <script>
 import Terminal from '../config/Xterm'
@@ -39,7 +36,20 @@ export default {
   mounted() {
     console.log('pid : ' + this.terminal.pid + ' is on ready')
     let terminalContainer = document.getElementById('terminal')
-    this.term = new Terminal()
+    this.term = new Terminal({
+      cursorBlink: true,
+      rendererType: "canvas", //渲染类型
+      cursorBlink: true, //光标闪烁
+      // cursorStyle: "underline", //光标样式
+      scrollback: 50, //终端中的回滚量
+      convertEol: true, //启用时，光标将设置为下一行的开头
+      theme: {
+        foreground: "#ECECEC", //字体
+        background: "#000000", //背景色
+        cursor: "help", //设置光标
+        lineHeight: 20
+      }
+    })
     this.term.open(terminalContainer)
     // open websocket
     this.terminalSocket = new WebSocket('ws://127.0.0.1:3000/terminals/')
@@ -59,8 +69,9 @@ export default {
 
 <style lang="scss" scoped>
 .console {
-  :deep(.xterm-text-layer) {
+  margin-top: 40px;
 
+  :deep(.xterm-text-layer) {
     width: 100%;
     height: 100%;
   }

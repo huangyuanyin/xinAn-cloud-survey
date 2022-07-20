@@ -51,15 +51,6 @@ const routes = [
               import("@/views/POCTest/deviceManagement/index.vue"),
           },
           {
-            path: "/POCTest/Termail",
-            name: "Termail",
-            meta: {
-              title: "终端",
-            },
-            component: () =>
-              import("@/views/POCTest/deviceManagement/Termail.vue"),
-          },
-          {
             path: "/POCTest/performanceTestTask",
             name: "PerformanceTestTask",
             meta: {

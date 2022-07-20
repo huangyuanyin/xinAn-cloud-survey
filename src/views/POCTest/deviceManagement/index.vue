@@ -11,14 +11,18 @@
           <el-table-column prop="address" label="Address" width="600" align="center" />
           <el-table-column prop="zip" label="Zip" width="120" align="center" />
           <el-table-column fixed="right" label="Operations" align="center">
-            <template #default>
+            <template #default="scope">
               <el-button link type="primary" size="small" @click="handleDedit">编辑</el-button>
-              <!-- <el-button link type="primary" size="small" @click="termailDialogVisible = true">终端</el-button> -->
-              <el-button link type="primary" size="small" @click="toConsole">终端</el-button>
+              <el-button link type="primary" size="small" v-if="scope.row.isShowTermail == false"
+                @click="openConsole(scope.row)">
+                打开终端</el-button>
+              <el-button link type="primary" size="small" v-else @click="cloeConsole(scope.row)">关闭终端</el-button>
               <el-button link type="primary" size="small" @click="handleDelete">删除</el-button>
             </template>
           </el-table-column>
         </el-table>
+        <!-- 终端 -->
+        <Termmail v-if="isShowTermail" />
       </el-tab-pane>
       <el-tab-pane label="被测设备管理" name="second">被测设备管理</el-tab-pane>
       <el-tab-pane label="交换机管理" name="third">交换机管理</el-tab-pane>
@@ -57,17 +61,14 @@
       </template>
     </el-dialog>
 
-    <!-- 终端 -->
-    <el-dialog custom-class="termailDialog" v-model="termailDialogVisible" draggable :close-on-click-modal="false">
-      <Termmail />
-    </el-dialog>
   </div>
 </template>
 
 <script lang="ts">
-import { defineComponent } from "vue";
+import { defineComponent, onMounted, toRefs, nextTick } from "vue";
 import { ref, reactive } from "vue";
 import type { TabsPaneContext } from "element-plus";
+import { ElMessage } from "element-plus";
 import type { FormInstance, FormRules } from "element-plus";
 import { instrumentManagementData } from "./data.js"
 import Termmail from '../../../components/Termail.vue'
@@ -84,8 +85,10 @@ export default defineComponent({
     // })
     const activeName = ref("instrumentManagement");
     const dialogVisible = ref(false);
-    const termailDialogVisible = ref(false);
-    const tableData = ref(instrumentManagementData)
+    const isShowTermail = ref(false);
+    const state: any = reactive({
+      tableData: []
+    })
     const addDeviceForm = reactive({
       ip: "",
       userName: "",
@@ -135,13 +138,31 @@ export default defineComponent({
     const handleDelete = () => {
       console.log('删除')
     }
-    const toConsole = () => {
-      window.open("/POCTest/Termail", '_blank')
+    const openConsole = (row) => {
+      if (isShowTermail.value) {
+        ElMessage({
+          message: "已有打开的终端,请先关闭!",
+          type: "warning",
+        });
+        return
+      }
+      row.isShowTermail = true
+      isShowTermail.value = true
     }
+    const cloeConsole = (row) => {
+      row.isShowTermail = false
+      isShowTermail.value = false
+    }
+    onMounted(() => {
+      instrumentManagementData.forEach((item, index) => {
+        item.isShowTermail = false
+      })
+      state.tableData = instrumentManagementData
+      console.log("数据...", state.tableData);
+    })
     return {
-      // terminal,
-      termailDialogVisible,
-      tableData,
+      isShowTermail,
+      ...toRefs(state),
       activeName,
       dialogVisible,
       addDeviceForm,
@@ -153,7 +174,8 @@ export default defineComponent({
       onResetDeviceForm,
       addDeviceRuleFormRef,
       addDeviceFormRules,
-      toConsole
+      openConsole,
+      cloeConsole
     };
   },
 });
