@@ -63,7 +63,7 @@ const routes = [
             path: "/POCTest/taskDetail",
             name: "TaskDetail",
             meta: {
-              title: "性能测试任务",
+              title: "性能测试任务详情",
             },
             component: () =>
               import("@/views/POCTest/performanceTestTask/taskDetail.vue"),
