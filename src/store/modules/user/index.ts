@@ -26,8 +26,8 @@ export const useUserStore = defineStore({
             setToken(this.token)
             return token
         },
-        LoginOut() {
-            removeToken()
+        async LoginOut() {
+            await removeToken()
             localStorage.removeItem("userInfo")
         }
     }
