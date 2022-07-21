@@ -5,12 +5,6 @@
         <TopMenu />
       </el-header>
       <el-container>
-        <!-- <el-aside>
-          <TestMenuVue />
-        </el-aside>
-        <el-main>
-          <MainContent />
-        </el-main> -->
         <router-view :key="key"></router-view>
       </el-container>
     </el-container>
@@ -21,15 +15,9 @@
 import { defineComponent, computed } from "vue";
 import { useRoute } from "vue-router";
 import TopMenu from "./components/TopMenu.vue";
-// import MainContent from "./components/MainContent.vue";
-// import TestMenuVue from "../../components/TestMenu.vue";
-// import Collapse from "../../components/CollapseMenu.vue";
 export default defineComponent({
   components: {
     TopMenu,
-    // MainContent,
-    // Collapse,
-    // TestMenuVue,
   },
   setup() {
     const route = useRoute();
@@ -50,7 +38,8 @@ export default defineComponent({
     padding: 0px;
     z-index: 999;
   }
-  .el-container{
+
+  .el-container {
     overflow: hidden;
     height: 100vh;
   }
