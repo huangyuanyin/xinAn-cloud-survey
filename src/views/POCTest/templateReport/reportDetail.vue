@@ -44,7 +44,7 @@ import { datas } from "@/api/POC/index.js";
 import { useRoute, useRouter } from 'vue-router';
 import { ArrowLeftBold } from "@element-plus/icons-vue";
 import DataTemplateDialog from './components/dataTemplateDialog.vue';
-import { getDataApi } from "../../../utils/getApi.js"
+import { getDataApi } from "@/utils/getApi.js"
 export default defineComponent({
   components: {
     ArrowLeftBold, DataTemplateDialog

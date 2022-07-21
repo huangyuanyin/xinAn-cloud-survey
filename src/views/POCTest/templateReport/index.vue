@@ -47,8 +47,6 @@
           <el-button link type="primary" size="small" @click="toDetail(scope.row.id)">{{ scope.row.id }}</el-button>
         </template>
       </el-table-column>
-      <!-- <el-table-column property="stamp" label="任务执行标识" width="120" />
-    <el-table-column property="resultid" label="测试结果ID" width="120" /> -->
       <el-table-column label="测试时间" width="200" align="center">
         <template #default="scope">{{ scope.row.time }}</template>
       </el-table-column>
@@ -83,10 +81,10 @@
 <script lang="ts">
 import { defineComponent, onMounted, ref, reactive, toRef, toRefs } from "vue";
 import { datas } from "@/api/POC/index.js";
-import { filterData } from "../../../utils/util.js";
+import { filterData } from "@/utils/util.js";
 import { useRouter } from "vue-router";
 import { ElMessage } from "element-plus";
-import { getDataApi } from "../../../utils/getApi.js"
+import { getDataApi } from "@/utils/getApi.js"
 import DataTemplateDialog from './components/dataTemplateDialog.vue';
 export default defineComponent({
   components: {

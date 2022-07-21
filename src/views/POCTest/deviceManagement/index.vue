@@ -71,7 +71,7 @@ import type { TabsPaneContext } from "element-plus";
 import { ElMessage } from "element-plus";
 import type { FormInstance, FormRules } from "element-plus";
 import { instrumentManagementData } from "./data.js"
-import Termmail from '../../../components/Termail.vue'
+import Termmail from '@/components/Termail.vue'
 export default defineComponent({
   components: {
     Termmail
