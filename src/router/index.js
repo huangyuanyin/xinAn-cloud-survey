@@ -17,7 +17,7 @@ const routes = [
   },
   {
     path: "/",
-    redirect: "/home",
+    redirect: "/POCTest/overview",
     component: Layout,
   },
   {
