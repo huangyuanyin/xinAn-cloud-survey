@@ -23,15 +23,17 @@ service.interceptors.request.use(
     if (
       hastoken &&
       config.url !== "/forum/login/" &&
-      config.url !== "/datas/datas/"
+      config.url !== "/datas/datas/" &&
+      config.url !== "/WEBt/terminals/"
     ) {
       config.headers["token"] = hastoken;
     }
     switch (config.urlType) {
       case "POC":
-        config.url = baseUrl.base_POC_URL + config.url;
+        config.url = baseUrl.Base_POC_URL + config.url;
         break;
-
+      case "Xterm":
+        config.url = baseUrl.Base_Xterm_URL + config.url;
       default:
         config.url = baseUrl.Base_Login_URL + config.url;
         break;
