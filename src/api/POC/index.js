@@ -1,4 +1,5 @@
 import request from "@/utils/request.js";
+import qs from "qs";
 
 export function datas(params) {
   return request({
@@ -11,9 +12,12 @@ export function datas(params) {
 
 export function xtermApi(params) {
   return request({
-    url: "/WEBt/terminals/",
+    url: "/websocke",
     method: "post",
     urlType: "Xterm",
-    params,
+    data: params,
+    headers: {
+      "Content-Type": "application/json", // 如果写成contentType会报错
+    },
   });
 }

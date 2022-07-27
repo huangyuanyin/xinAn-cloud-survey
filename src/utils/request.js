@@ -34,7 +34,8 @@ service.interceptors.request.use(
         break;
       case "Xterm":
         config.url = baseUrl.Base_Xterm_URL + config.url;
-      default:
+        break;
+      case "Login":
         config.url = baseUrl.Base_Login_URL + config.url;
         break;
     }

@@ -31,7 +31,7 @@ export default {
     },
     closeRealTerminal() {
       console.log('close')
-    }
+    },
   },
   mounted() {
     console.log('pid : ' + this.terminal.pid + ' is on ready')
@@ -52,7 +52,7 @@ export default {
     })
     this.term.open(terminalContainer)
     // open websocket
-    this.terminalSocket = new WebSocket('ws://127.0.0.1:3000/terminals/')
+    this.terminalSocket = new WebSocket('ws://10.20.86.27:1182/websocke?host_ip=10.20.86.27&host_por=22&user=root&passwd=inf0sec312')
     this.terminalSocket.onopen = this.runRealTerminal
     this.terminalSocket.onclose = this.closeRealTerminal
     this.terminalSocket.onerror = this.errorRealTerminal

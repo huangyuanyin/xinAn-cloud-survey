@@ -72,6 +72,7 @@ import { ElMessage } from "element-plus";
 import type { FormInstance, FormRules } from "element-plus";
 import { instrumentManagementData } from "./data.js"
 import Termmail from '@/components/Termail.vue'
+import { xtermApi } from "@/api/POC/index.js"
 export default defineComponent({
   components: {
     Termmail
@@ -138,7 +139,7 @@ export default defineComponent({
     const handleDelete = () => {
       console.log('删除')
     }
-    const openConsole = (row) => {
+    const openConsole = async (row) => {
       if (isShowTermail.value) {
         ElMessage({
           message: "已有打开的终端,请先关闭!",
@@ -146,12 +147,19 @@ export default defineComponent({
         });
         return
       }
+      getXtermApi()
       row.isShowTermail = true
       isShowTermail.value = true
     }
     const cloeConsole = (row) => {
       row.isShowTermail = false
       isShowTermail.value = false
+    }
+    const getXtermApi = async () => {
+      const params = { "ip": "10.20.86.27", "port": 22, "user": "root", "passwd": "inf0sec312!" }
+      let res = await xtermApi(params)
+      console.log("res", params);
+
     }
     onMounted(() => {
       instrumentManagementData.forEach((item, index) => {
@@ -175,7 +183,8 @@ export default defineComponent({
       addDeviceRuleFormRef,
       addDeviceFormRules,
       openConsole,
-      cloeConsole
+      cloeConsole,
+      getXtermApi
     };
   },
 });
