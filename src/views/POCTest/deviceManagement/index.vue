@@ -72,7 +72,6 @@ import { ElMessage } from "element-plus";
 import type { FormInstance, FormRules } from "element-plus";
 import { instrumentManagementData } from "./data.js"
 import Termmail from '@/components/Termail.vue'
-import { xtermApi } from "@/api/POC/index.js"
 export default defineComponent({
   components: {
     Termmail
@@ -147,19 +146,12 @@ export default defineComponent({
         });
         return
       }
-      getXtermApi()
       row.isShowTermail = true
       isShowTermail.value = true
     }
     const cloeConsole = (row) => {
       row.isShowTermail = false
       isShowTermail.value = false
-    }
-    const getXtermApi = async () => {
-      const params = { "ip": "10.20.86.27", "port": 22, "user": "root", "passwd": "inf0sec312!" }
-      let res = await xtermApi(params)
-      console.log("res", params);
-
     }
     onMounted(() => {
       instrumentManagementData.forEach((item, index) => {
@@ -184,7 +176,6 @@ export default defineComponent({
       addDeviceFormRules,
       openConsole,
       cloeConsole,
-      getXtermApi
     };
   },
 });
