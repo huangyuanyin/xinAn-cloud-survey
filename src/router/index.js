@@ -16,6 +16,14 @@ const routes = [
     component: () => import("@/views/Login/index.vue"),
   },
   {
+    path: "/page",
+    name: "Page",
+    meta: {
+      title: "测试页面",
+    },
+    component: () => import("@/views/page/index.vue"),
+  },
+  {
     path: "/",
     redirect: "/POCTest/overview",
     component: Layout,
