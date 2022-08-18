@@ -24,7 +24,9 @@
         <!-- 终端 -->
         <Termmail v-if="isShowTermail" />
       </el-tab-pane>
-      <el-tab-pane label="被测设备管理" name="second">被测设备管理</el-tab-pane>
+      <el-tab-pane label="被测设备管理" name="second">
+        <button @click="toHH">查看表格</button>
+      </el-tab-pane>
       <el-tab-pane label="交换机管理" name="third">交换机管理</el-tab-pane>
       <el-tab-pane label="build管理" name="fourth">build管理</el-tab-pane>
     </el-tabs>
@@ -72,6 +74,7 @@ import { ElMessage } from "element-plus";
 import type { FormInstance, FormRules } from "element-plus";
 import { instrumentManagementData } from "./data.js"
 import Termmail from '@/components/Termail.vue'
+import { useRouter } from "vue-router";
 export default defineComponent({
   components: {
     Termmail
@@ -83,6 +86,7 @@ export default defineComponent({
     //   // cols: 400,
     //   // rows: 400
     // })
+    const router = useRouter()
     const activeName = ref("instrumentManagement");
     const dialogVisible = ref(false);
     const isShowTermail = ref(false);
@@ -138,6 +142,9 @@ export default defineComponent({
     const handleDelete = () => {
       console.log('删除')
     }
+    const toHH = () => {
+      router.push('/page')
+    }
     const openConsole = async (row) => {
       if (isShowTermail.value) {
         ElMessage({
@@ -176,6 +183,8 @@ export default defineComponent({
       addDeviceFormRules,
       openConsole,
       cloeConsole,
+      router,
+      toHH
     };
   },
 });

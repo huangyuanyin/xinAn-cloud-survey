@@ -21,7 +21,7 @@ const routes = [
     meta: {
       title: "测试页面",
     },
-    component: () => import("@/views/page/index.vue"),
+    component: () => import("@/views/page/card.vue"),
   },
   {
     path: "/",
